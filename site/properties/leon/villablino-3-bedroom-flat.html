@@ -186,7 +186,7 @@ document.querySelectorAll('#gal button').forEach(function(b){b.onclick=function(
 lb.querySelector('.x').onclick=function(){lb.classList.remove('on')};lb.querySelector('.pv').onclick=function(){show(i-1)};lb.querySelector('.nx').onclick=function(){show(i+1)};
 lb.onclick=function(e){if(e.target===lb)lb.classList.remove('on')};document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)})})();
 </script>
-<script>try{fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,w:screen.width})})}catch(e){}</script>
+<script>try{if(document.cookie.indexOf("hsb_me=1")<0)fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,w:screen.width})})}catch(e){}</script>
 <script src="/js/menu.js" defer></script>
 </body>
 </html>
