@@ -165,13 +165,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 {"@type":"Question","name":"How far is Villablino from the beach?","acceptedAnswer":{"@type":"Answer","text":"The Atlantic coast of Asturias (Cudillero) is about 110 km away, roughly 2 hours by car."}},
 {"@type":"Question","name":"Are there brown bears near Villablino?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Laciana Valley is one of the brown bear's strongholds in Spain. Bears live in the surrounding mountains, not in town."}}]}
 </script>
+<link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
 
-<nav class="nav"><div class="wrap">
-  <a class="brand" href="#">Hidden Spain Bargains<small>by La Comercial Inmobiliaria</small></a>
-  <div class="nav-right"><a class="tel" href="tel:+34641188959">+34 641 18 89 59</a><a class="btn" href="#contact">Contact us</a></div>
-</div></nav>
+<!--NAV--><header class="snav"><div class="in"><a class="logo" href="/">Hidden Spain Bargains<small>by La Comercial Inmobiliaria</small></a><button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button><ul class="menu"><li><button aria-expanded="false">Buy</button><ul class="sub"><li><a href="/properties/">Search all properties</a></li><li><span class="lab">By province</span></li><li><a href="/properties/leon/">León</a></li><li><a class="soon" href="/properties/#coming-soon">Asturias<em>soon</em></a></li><li><a class="soon" href="/properties/#coming-soon">A Coruña<em>soon</em></a></li><li><a class="soon" href="/properties/#coming-soon">Córdoba<em>soon</em></a></li><li><a class="soon" href="/properties/#coming-soon">Huelva<em>soon</em></a></li><li><a class="soon" href="/properties/#coming-soon">Castellón<em>soon</em></a></li></ul></li><li><button aria-expanded="false">Move to Spain</button><ul class="sub"><li><a href="/guides/">All country guides</a></li><li><span class="lab">By country</span></li><li><a href="/guides/#uk">🇬🇧 From the UK</a></li><li><a href="/guides/#us">🇺🇸 From the US</a></li><li><a href="/guides/#ca">🇨🇦 From Canada</a></li><li><a href="/guides/#au">🇦🇺 From Australia</a></li><li><a href="/guides/#nz">🇳🇿 From New Zealand</a></li></ul></li><li><button aria-expanded="false">Buyers guide</button><ul class="sub"><li><a href="/buyers-guide/how-we-work.html">How our home search works</a></li><li><a href="/buyers-guide/buying-costs-and-taxes.html">Buying costs &amp; taxes</a></li><li><a href="/buyers-guide/visas-to-live-in-spain.html">Visas to live in Spain</a></li><li><a href="/buyers-guide/buying-from-abroad.html">Buying from abroad</a></li></ul></li><li><button aria-expanded="false">Area guides</button><ul class="sub"><li><span class="lab">León</span></li><li><a href="/">Villablino &amp; Laciana Valley</a></li></ul></li><li><a href="/guides/">Articles</a></li><li><a class="cta" href="/#contact">Contact</a></li></ul></div></header><!--/NAV-->
 
 <header class="hero" style="background-image:url('img/villablino-laciana-valley.jpg')" role="img" aria-label="Aerial view of Villablino and the Laciana Valley mountains">
   <div class="wrap">
@@ -294,7 +292,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="kicker">Opportunities</div>
   <h2 class="section-title">Homes for sale in Villablino</h2>
   <p class="lead">We select homes in the Laciana Valley, research the area for you and negotiate the price on your behalf. Watch our latest video, then contact us for details.</p>
-  <a class="home-card" href="/homes/villablino-3-bedroom-flat.html">
+  <a class="home-card" href="/properties/leon/villablino-3-bedroom-flat.html">
     <img src="/img/villablino-flat-main-bedroom.jpg" alt="Bedroom of a 3-bedroom flat for sale in Villablino" loading="lazy">
     <div><span class="kicker">For sale · Ref HSB-VB-001</span><b>3-bedroom flat in Villablino</b><em>€42,000</em><span>74 m² · 3 bedrooms · 1 bathroom · south-facing · furnished</span><span class="go">See the flat →</span></div>
   </a>
@@ -348,5 +346,6 @@ document.querySelectorAll('.photo img').forEach(i=>i.addEventListener('click',()
 lb.addEventListener('click',()=>lb.classList.remove('on'));
 </script>
 <script>try{fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,w:screen.width})})}catch(e){}</script>
+<script src="/js/menu.js" defer></script>
 </body>
 </html>

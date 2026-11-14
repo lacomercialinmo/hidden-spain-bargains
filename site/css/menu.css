@@ -1,0 +1,37 @@
+.snav{position:sticky;top:0;z-index:80;background:rgba(251,249,245,.97);backdrop-filter:blur(8px);border-bottom:1px solid #E4DDD3;font-family:'Jost',Helvetica,Arial,sans-serif}
+.snav .in{max-width:1140px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.snav .logo{font-family:'Fraunces',Georgia,serif;font-weight:800;font-size:22px;color:#1A1A1A;text-decoration:none;line-height:1;white-space:nowrap}
+.snav .logo small{display:block;font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5E5650;margin-top:4px}
+.snav ul{list-style:none;margin:0;padding:0}
+.snav .menu{display:flex;align-items:center;gap:4px}
+.snav .menu>li{position:relative}
+.snav .menu>li>a,.snav .menu>li>button{display:block;background:none;border:0;text-transform:uppercase;letter-spacing:.06em;font:500 14px 'Jost',sans-serif;color:#1A1A1A;text-decoration:none;padding:10px 12px;cursor:pointer;white-space:nowrap}
+.snav .menu>li>a:hover,.snav .menu>li>button:hover{color:#8B0000}
+.snav .menu>li>button::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin:0 0 3px 8px}
+.snav .menu .cta{background:#8B0000;color:#fff!important;border-radius:6px;padding:9px 18px;margin-left:8px}
+.snav .menu .cta:hover{background:#6e0000}
+.snav .sub{position:absolute;top:100%;left:0;min-width:250px;background:#fff;border:1px solid #E4DDD3;box-shadow:0 12px 30px rgba(0,0,0,.08);padding:8px 0;display:none}
+.snav li.open>.sub{display:block}
+@media(hover:hover) and (min-width:901px){.snav .menu>li:hover>.sub{display:block}}
+.snav .sub a{display:block;padding:9px 18px;color:#1A1A1A;text-decoration:none;font-size:15px}
+.snav .sub a:hover{background:#F6F1EA;color:#8B0000}
+.snav .sub .lab{display:block;padding:10px 18px 4px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B0000;font-weight:600}
+.snav .sub .soon{color:#9a918a}
+.snav .sub .soon em{font-style:normal;font-size:12px;margin-left:6px}
+.snav .burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;padding:10px}
+.snav .burger span{display:block;height:2px;background:#1A1A1A;margin:5px 0;transition:.2s}
+@media(max-width:900px){
+ .snav .in{height:58px;padding:0 16px}
+ .snav .logo{font-size:18px}.snav .logo small{font-size:9px}
+ .snav .burger{display:block}
+ .snav .menu{display:none;position:absolute;top:58px;left:0;right:0;background:#FBF9F5;border-bottom:1px solid #E4DDD3;flex-direction:column;align-items:stretch;padding:8px 0 16px;max-height:calc(100vh - 58px);overflow:auto;box-shadow:0 16px 30px rgba(0,0,0,.1)}
+ .snav.on .menu{display:flex}
+ .snav .menu>li>a,.snav .menu>li>button{width:100%;text-align:left;padding:18px 22px;font-size:17px;border-bottom:1px solid #E6DFD5;display:flex;justify-content:space-between;align-items:center}
+ .snav .sub{position:static;box-shadow:none;border:0;background:#F6F1EA;padding:4px 0}
+ .snav .sub a{padding:11px 32px}
+ .snav .sub .lab{padding:10px 32px 2px}
+ .snav .menu .cta{margin:14px 20px 0;text-align:center!important;border-bottom:0}
+ .snav.on .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+ .snav.on .burger span:nth-child(2){opacity:0}
+ .snav.on .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}

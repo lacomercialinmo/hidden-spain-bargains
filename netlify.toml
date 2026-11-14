@@ -6,3 +6,8 @@
   from = "/stats"
   to = "/.netlify/functions/stats"
   status = 200
+
+[[redirects]]
+  from = "/homes/villablino-3-bedroom-flat.html"
+  to = "/properties/leon/villablino-3-bedroom-flat.html"
+  status = 301

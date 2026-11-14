@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+Disallow: /stats
+
+User-agent: GPTBot
+Allow: /
+Disallow: /stats
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /stats
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /stats
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /stats
+
+User-agent: Claude-User
+Allow: /
+Disallow: /stats
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /stats
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /stats
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /stats
+
+User-agent: Bingbot
+Allow: /
+Disallow: /stats
+
+Sitemap: https://hiddenspainbargains.netlify.app/sitemap.xml
