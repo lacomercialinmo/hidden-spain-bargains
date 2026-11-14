@@ -67,3 +67,11 @@ details p{margin-top:10px}
  .lead{font-size:19px}
  .wa{width:50px;height:50px}
 }
+.midcard{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);text-decoration:none;color:var(--ink);margin:26px 0;padding:10px}
+.midcard img{width:120px;height:120px;object-fit:cover}
+.midcard span{display:flex;flex-direction:column;gap:2px}
+.midcard small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.midcard b{font-family:var(--serif);font-size:19px;line-height:1.2}
+.midcard em{font-style:normal;font-family:var(--serif);font-weight:800;font-size:24px;color:var(--accent)}
+.midcard i{font-style:normal;font-size:14px;color:var(--muted)}
+.legal h2{font-size:22px!important;margin-top:28px!important}

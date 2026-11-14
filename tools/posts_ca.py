@@ -10,7 +10,7 @@ dict(slug="moving-to-spain-from-canada-2026", country=C, topic="visas", pillar=T
   lead=f"Canadians have one advantage most people don't: a working holiday visa open until age 35. After that, the digital nomad and non-lucrative visas cover most people.",
   body=f"""<div class="box"><p><b>Quick answer:</b> under 36, the working holiday visa gives you {F('whv')}. Remote workers use the digital nomad visa ({F('dnv_income')}). Retirees use the non-lucrative visa ({F('nlv_income')}).</p></div>
 <h2>Why Canadians are looking at Spain</h2>
-<p>You have probably done the maths many times. The national average home in Canada sells for {F('price_ca')}, and in the Greater Toronto Area the average is {F('price_toronto')}. In Spain, a whole flat in a mountain town can cost less than a down payment back home.</p>
+<p>You have probably done the maths many times. The national average home in Canada sells for {F('price_ca')}, and in the Greater Toronto Area the average is {F('price_toronto')}. In Spain, a whole apartment in a mountain town can cost less than a down payment back home.</p>
 {price_table([("Canada (national average)", F('price_ca')), ("Greater Toronto Area (average)", F('price_toronto')), ("Spain (average)", F('price_spain')), ("Villablino, León", F('price_villablino'))])}
 <h2>The three routes</h2>
 <ul><li><b>Working holiday (18–35):</b> {F('whv')}. Perfect for trying Spain before you buy.</li>

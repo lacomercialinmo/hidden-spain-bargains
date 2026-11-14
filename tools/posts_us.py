@@ -25,11 +25,11 @@ dict(slug="moving-to-spain-from-the-us-2026", country=C, topic="visas", pillar=T
 dict(slug="us-home-prices-vs-spain", country=C, topic="cost", img="town", mins=5,
   kicker=TOPICS["cost"], title="A $417,500 Median Home vs a Paid-Off Home in Spain",
   h1="A $417,500 median home, or a paid-off home in Spain?",
-  desc=f"The median US existing home costs {F('price_us').split(' (')[0]}. In a Spanish mountain town a three-bedroom flat costs a small fraction of that, with no mortgage.",
+  desc=f"The median US existing home costs {F('price_us').split(' (')[0]}. In a Spanish mountain town a three-bedroom apartment costs a small fraction of that, with no mortgage.",
   lead=f"The median existing-home price in the US is {F('price_us')}. In Villablino, north-west Spain, homes sell for around {F('price_villablino')}.",
   body=f"""{price_table([("United States (median existing home)", F('price_us')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>No mortgage, no HOA, no property-tax shock</h2>
-<p>Our three-bedroom, 74 m² flat in Villablino is listed at €42,000. You pay a one-off transfer tax of {F('itp_cyl')} and notary fees, then a modest yearly local tax (IBI).</p>
+<p>Our three-bedroom, 74 m² apartment in Villablino is listed at €42,000. You pay a one-off transfer tax of {F('itp_cyl')} and notary fees, then a modest yearly local tax (IBI).</p>
 <h2>What you trade</h2>
 <p>A big American house and a two-car commute, for a compact town where shops, the health centre and schools are close together, surrounded by mountains.</p>
 {villablino()}""",

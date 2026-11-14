@@ -2,7 +2,7 @@
 """Builds Hidden Spain Bargains: menu, guides, buyers guide, properties search, sitemap, robots, llms."""
 import glob, html, importlib.util, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from postlib import TOPICS
+from postlib import TOPICS, closer, mid_card, home_word
 from sitedata import BASE, PROVINCES, PROPERTIES, nav_html, NAV_HEAD, NAV_JS, card_html, prop_url, prov_name
 import facts, proofcheck
 
@@ -48,7 +48,7 @@ def head(title, desc, canon, extra=""):
 
 def footer():
     return ('<footer class="footer"><div class="wrap"><div><b>Hidden Spain Bargains</b><br>by La Comercial Inmobiliaria · <a href="https://lacomercial.app.link">lacomercial.app.link</a></div>'
-            '<div><a href="/properties/">Properties</a> · <a href="/guides/">Articles</a> · <a href="/buyers-guide/how-we-work.html">How we work</a> · <a href="/buyers-guide/buying-costs-and-taxes.html">Costs &amp; taxes</a></div>'
+            '<div><a href="/properties/">Properties</a> · <a href="/guides/">Articles</a> · <a href="/buyers-guide/how-we-work.html">How we work</a> · <a href="/buyers-guide/buying-costs-and-taxes.html">Costs &amp; taxes</a><br><a href="/legal-notice.html">Legal notice</a> · <a href="/privacy.html">Privacy</a></div>'
             f'<div>WhatsApp / phone: <a href="https://wa.me/34641188959">+34 641 18 89 59</a><br>Information checked {UPDATED_TXT}. Not legal or tax advice.</div></div></footer>'
             f'<a class="wa" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener" aria-label="WhatsApp">{WA_SVG}</a>'
             f'\n{PING}\n{NAV_JS}\n</body>\n</html>')
@@ -168,7 +168,7 @@ def request_form():
             '<select name="goal" aria-label="Goal"><option value="">Goal</option><option>Main home</option><option>Holiday home</option><option>Remote-work base</option><option>Retirement</option><option>Investment</option></select>'
             '<select name="lifestyle" aria-label="Lifestyle"><option value="">Lifestyle</option><option>Mountain</option><option>Coast</option><option>Countryside</option><option>Town or city</option></select>'
             '<textarea class="full" name="message" placeholder="Anything else? Areas, timing, must-haves…" aria-label="Message"></textarea>'
-            '<label class="full" style="font-size:13px;color:var(--muted)"><input type="checkbox" name="consent" value="yes" required style="width:auto"> I agree that La Comercial Inmobiliaria may use my details to answer this request.</label>'
+            '<label class="full" style="font-size:13px;color:var(--muted)"><input type="checkbox" name="consent" value="yes" required style="width:auto"> I agree that my details are used to answer this request, as explained in the <a href=\"/privacy.html\">privacy policy</a>.</label>'
             '<button class="btn full" type="submit" style="font-size:16px;padding:13px">Send my search</button></form></div>')
 
 def properties_index():
@@ -229,8 +229,89 @@ def province_page(pv):
             '<div class="wrap" style="padding-top:14px;padding-bottom:40px"><div class="kicker">' + e(pv["region"]) + '</div>'
             f'<h1 style="font-family:var(--serif);font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.05;margin:10px 0 12px">Homes for sale in {e(pv["name"])}</h1>'
             f'<p class="lead" style="max-width:760px">{e(pv["intro"])}</p>'
-            f'<p class="count">{len(ps)} home(s) · Areas: {e(", ".join(pv["areas"]))} · <a href="/">Read the Villablino area guide</a></p>'
+            f'<p class="count">{len(ps)} home(s) · Areas: {e(", ".join(pv["areas"]))} · <a href="/areas/villablino/">Read the Villablino area guide</a></p>'
             f'<div class="pgrid">{"".join(card_html(p) for p in ps)}</div>' + request_form() + '</div>' + footer())
+
+
+HOME_CSS = """<style>
+.hhero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;background:#222 url('/img/villablino-laciana-valley.jpg') center/cover no-repeat}
+.hhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 20%,rgba(0,0,0,.68) 100%)}
+.hhero .wrap{position:relative;z-index:2;padding-bottom:60px;width:100%}
+.hhero h1{font-family:var(--serif);font-weight:800;font-size:clamp(36px,6vw,74px);line-height:1.03;margin:10px 0 14px;max-width:900px;text-shadow:0 3px 18px rgba(0,0,0,.35)}
+.hhero p{font-size:20px;max-width:640px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.hhero .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.hhero .btn.ghost{color:#fff;border-color:#fff}
+.trust{background:#fff;border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);margin:0;padding:0}
+.trust li{padding:18px 14px;border-right:1px solid var(--line);font-size:15px;text-align:center}
+.trust li b{display:block;font-family:var(--serif);color:var(--accent);font-size:18px}
+.hsec{padding:56px 0;border-bottom:1px solid var(--line)}
+.hsec h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:8px 0 16px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px}
+.step{background:#fff;border:1px solid var(--line);padding:22px}
+.step b{font-family:var(--serif);font-size:34px;color:var(--accent);display:block}
+.step h3{font-size:19px;margin:6px 0}
+.who{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:center}
+.who img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.topics{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 22px}
+.topics a{border:1px solid var(--accent);border-radius:30px;padding:8px 16px;text-decoration:none;font-weight:500}
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:720px}
+.cform input,.cform textarea{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1px solid #cfc6ba;border-radius:6px;background:#fff}
+.cform .full{grid-column:1/-1}
+@media(max-width:800px){.trust ul{grid-template-columns:1fr 1fr}.steps,.who{grid-template-columns:1fr}.cform{grid-template-columns:1fr}.hhero{min-height:70vh}}
+</style>"""
+
+def homepage(guides):
+    from sitedata import PROPERTIES
+    props = "".join(card_html(p) for p in PROPERTIES[:3])
+    latest = [g for g in guides if g.get("pillar")][:3] + [g for g in guides if g.get("topic") in ("cost", "life") and not g.get("pillar")][:3]
+    faqs = [("How does your home search work?", "Tell us what you need, we send you a shortlist with area guides, the owner shows you the home in person or by video call, and we negotiate the price for you."),
+            ("How much do you charge?", "You only pay if you buy. Our fee comes out of the discount we negotiate, and we explain the exact terms in writing before you see any property."),
+            ("Can I buy without travelling to Spain?", "Yes. You can view by video call and sign through a power of attorney. You will need an NIE, the tax number every foreign buyer needs.")]
+    faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{a}</p></details>" for q, a in faqs)
+    ld = [{"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "Hidden Spain Bargains by La Comercial Inmobiliaria", "url": BASE + "/",
+           "telephone": "+34641188959", "email": "lacomercialinmo@gmail.com", "areaServed": ["León", "El Bierzo", "Villablino", "Spain"], "knowsLanguage": ["en", "es"]},
+          {"@context": "https://schema.org", "@type": "WebSite", "name": "Hidden Spain Bargains", "url": BASE + "/"},
+          {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]
+    ldh = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
+    og = f'<meta property="og:type" content="website"><meta property="og:image" content="{BASE}/img/villablino-laciana-valley.jpg">'
+    topics = "".join(f'<a href="/guides/#{c}">{e(n)}</a>' for c, n in TOPICS.items())
+    return (head("Homes for Sale in Spain, Found and Negotiated for You", "Hand-picked homes in quiet, beautiful parts of Spain. We research the area and negotiate the price for you. You only pay if you buy.", BASE + "/", PROP_CSS + HOME_CSS + og + ldh) +
+        '<section class="hhero"><div class="wrap"><div class="eyebrow">Hidden Spain Bargains</div>'
+        '<h1>Your home in Spain, found and negotiated for you.</h1>'
+        '<p>We find hidden bargains in quiet, beautiful parts of Spain, explain the area like a local, and negotiate the price on your behalf. You only pay if you buy.</p>'
+        '<div class="btns"><a class="btn" href="/properties/">See homes</a><a class="btn ghost" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a></div></div></section>'
+        '<section class="trust"><ul><li><b>You pay only if you buy</b>Fee from the saving we get</li><li><b>We work for you</b>Not for the seller</li><li><b>Checked figures</b>Official sources, dated</li><li><b>In English</b>From first message to keys</li></ul></section>'
+        '<section class="hsec"><div class="wrap"><div class="kicker">For sale now</div><h2>Hand-picked homes</h2>'
+        f'<div class="pgrid">{props}</div><p style="margin-top:18px"><a href="/properties/">Search all homes →</a> · <a href="/properties/#request">Tell us what you are looking for →</a></p></div></section>'
+        '<section class="hsec"><div class="wrap"><div class="kicker">How it works</div><h2>Three steps to your home in Spain</h2><div class="steps">'
+        '<div class="step"><b>1</b><h3>Tell us what you need</h3><p>Budget, bedrooms, lifestyle and timing. A short form or a WhatsApp is enough.</p></div>'
+        '<div class="step"><b>2</b><h3>See the homes and the area</h3><p>A shortlist with photos, video and a guide to each town. The owner shows you the home in person or by video call.</p></div>'
+        '<div class="step"><b>3</b><h3>We negotiate, you decide</h3><p>We talk to the seller in Spanish and push the price down. You sign at a notary, in person or by power of attorney.</p></div>'
+        '</div><p style="margin-top:16px"><a href="/buyers-guide/how-we-work.html">More about how we work →</a></p></div></section>'
+        '<section class="hsec"><div class="wrap who"><img src="/img/villablino-town.jpg" alt="Villablino town centre surrounded by mountains" loading="lazy"><div><div class="kicker">Who is behind it</div><h2>Hi, I\'m Antonio</h2>'
+        '<p>I have worked as an independent real estate agent in Spain for more than 8 years, and I speak English fluently. Most agents work for the seller. I work for you: I find the home, check the area and push the price down.</p>'
+        '<p>Our fee comes out of the saving, so we only win when you do. You can follow our homes and area guides on TikTok at <a href="https://www.tiktok.com/@lacomercialrealestate" target="_blank" rel="noopener">@lacomercialrealestate</a>.</p></div></div></section>'
+        '<section class="hsec"><div class="wrap"><div class="kicker">Articles</div><h2>A new life in Spain, explained</h2>'
+        f'<div class="topics">{topics}</div><div class="cards">{"".join(gcard(g) for g in latest)}</div><p style="margin-top:18px"><a href="/guides/">All articles →</a></p></div></section>'
+        '<section class="hsec"><div class="wrap who"><div><div class="kicker">Area guide</div><h2>Villablino and the Laciana Valley</h2>'
+        f'<p>A mountain town in a UNESCO Biosphere Reserve, with fibre internet, a health centre, schools and two airports within reach. Homes cost around {facts.F("price_villablino")}.</p>'
+        '<p><a class="btn" href="/areas/villablino/">Read the area guide</a></p></div><img src="/img/villablino-nature.jpg" alt="Autumn forests and mountains in the Laciana Valley" loading="lazy"></div></section>'
+        '<section class="hsec" id="contact"><div class="wrap"><div class="kicker">Contact</div><h2>Tell us about the home you want</h2><p>We answer in English, usually within 24 hours.</p>'
+        '<form class="cform" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company"><input type="hidden" name="form-name" value="contact"><p style="display:none"><label>Company <input name="company"></label></p>'
+        '<input name="name" placeholder="Name" aria-label="Name" required><input type="email" name="email" placeholder="Email" aria-label="Email" required>'
+        '<input name="country" placeholder="Your country" aria-label="Country"><input name="budget" placeholder="Budget (e.g. €60,000)" aria-label="Budget">'
+        '<textarea class="full" name="message" aria-label="Message" placeholder="What are you looking for?"></textarea>'
+        '<label class="full" style="font-size:13px;color:var(--muted)"><input type="checkbox" name="consent" value="yes" required style="width:auto"> I agree that my details are used to answer me, as explained in the <a href="/privacy.html">privacy policy</a>.</label>'
+        '<button class="btn full" type="submit" style="font-size:16px;padding:13px">Send message</button></form>'
+        '<p style="margin-top:14px">Or WhatsApp / call <a href="https://wa.me/34641188959">+34 641 18 89 59</a> · <a href="mailto:lacomercialinmo@gmail.com">lacomercialinmo@gmail.com</a></p></div></section>'
+        f'<section class="hsec"><div class="wrap" style="max-width:780px"><div class="kicker">FAQ</div><h2>Questions buyers ask us</h2>{faq_html}</div></section>'
+        + footer())
+
+def legal_page(slug, title, body):
+    from legal import LEGAL_NOTICE, PRIVACY
+    return (head(title + " | Hidden Spain Bargains", title + " of Hidden Spain Bargains.", f"{BASE}/{slug}.html", '<meta name="robots" content="noindex,follow">') +
+            f'<header class="head"><div class="kicker">Legal</div><h1>{e(title)}</h1><p class="meta">Last updated {UPDATED_TXT}</p></header><article class="body legal">{body}</article>' + footer())
 
 def inject_nav(rel):
     path = os.path.join(SITE, rel)
@@ -254,6 +335,11 @@ def main():
     buyers = load("buyers_*.py")
     for p in guides:
         p["url"] = f'/guides/{p["slug"]}.html'
+        body = p["body"].replace("<!--CLOSER-->", closer(p["topic"], p["country"])).replace("§HW§", home_word(p["country"]))
+        parts = body.split("<h2>")
+        if len(parts) > 2:
+            body = parts[0] + "<h2>" + parts[1] + mid_card(p["country"]) + "<h2>" + "<h2>".join(parts[2:])
+        p["body"] = body
     for p in buyers:
         p["url"] = f'/buyers-guide/{p["slug"]}.html'
     for p in guides + buyers:
@@ -270,9 +356,13 @@ def main():
     for pv in PROVINCES:
         if pv["active"]:
             write(f'properties/{pv["slug"]}/index.html', province_page(pv))
-    for rel in ["index.html", "thanks.html"] + [prop_url(p)[1:] for p in PROPERTIES]:
+    write("index.html", homepage(guides))
+    from legal import LEGAL_NOTICE, PRIVACY
+    write("legal-notice.html", legal_page("legal-notice", "Legal notice", LEGAL_NOTICE))
+    write("privacy.html", legal_page("privacy", "Privacy policy", PRIVACY))
+    for rel in ["thanks.html", "areas/villablino/index.html"] + [prop_url(p)[1:] for p in PROPERTIES]:
         inject_nav(rel)
-    urls = ["/", "/properties/", "/guides/"] + [f'/properties/{pv["slug"]}/' for pv in PROVINCES if pv["active"]] + [prop_url(p) for p in PROPERTIES] + [p["url"] for p in buyers + guides]
+    urls = ["/", "/areas/villablino/", "/properties/", "/guides/"] + [f'/properties/{pv["slug"]}/' for pv in PROVINCES if pv["active"]] + [prop_url(p) for p in PROPERTIES] + [p["url"] for p in buyers + guides]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           "".join(f"<url><loc>{BASE}{u}</loc><lastmod>{UPDATED}</lastmod></url>\n" for u in urls) + "</urlset>\n")
     bots = ["*", "GPTBot", "ChatGPT-User", "OAI-SearchBot", "ClaudeBot", "Claude-User", "Claude-SearchBot", "Google-Extended", "PerplexityBot", "Bingbot"]
@@ -281,7 +371,7 @@ def main():
          "> English-language property search and guides for people moving to Spain from the UK, US, Canada, Australia and New Zealand. Personal-shopper service: we select homes, research the area and negotiate the price; the buyer pays only if they buy.", "",
          "## Homes for sale"]
     L += [f'- [{p["title"]} — €{p["price"]:,}]({BASE}{prop_url(p)}): {p["m2"]} m², {p["beds"]} bedrooms, {p["baths"]} bathroom, {p["town"]} ({prov_name(p["province"])}). Ref {p["ref"]}.' for p in PROPERTIES]
-    L += ["", "## Area guide", f"- [Living in Villablino, Spain]({BASE}/): UNESCO Laciana Valley, services, schools, distances to airports.", "", "## Buyers guide"]
+    L += ["", "## Area guide", f"- [Living in Villablino, Spain]({BASE}/areas/villablino/): UNESCO Laciana Valley, services, schools, distances to airports.", "", "## Buyers guide"]
     L += [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in buyers]
     for code, name in TOPICS.items():
         ps = [p for p in guides if p.get("topic") == code]

@@ -6,7 +6,7 @@
 - [3-bedroom flat in Villablino — €42,000](https://hiddenspainbargains.netlify.app/properties/leon/villablino-3-bedroom-flat.html): 74 m², 3 bedrooms, 1 bathroom, Villablino (León). Ref HSB-VB-001.
 
 ## Area guide
-- [Living in Villablino, Spain](https://hiddenspainbargains.netlify.app/): UNESCO Laciana Valley, services, schools, distances to airports.
+- [Living in Villablino, Spain](https://hiddenspainbargains.netlify.app/areas/villablino/): UNESCO Laciana Valley, services, schools, distances to airports.
 
 ## Buyers guide
 - [How our home search works](https://hiddenspainbargains.netlify.app/buyers-guide/how-we-work.html): We find homes in Spain, research the area for you and negotiate the price. You only pay if you buy, and our fee comes out of the discount we get.
@@ -20,7 +20,7 @@
 - [A NZ$755,000 median, or a mountain home in Spain?](https://hiddenspainbargains.netlify.app/guides/nz-house-prices-vs-spain.html): New Zealand's median house price is NZ$755,000. Here is what a home costs in a UNESCO valley in north-west Spain, with real figures.
 - [UK house prices vs Spain: what your money buys](https://hiddenspainbargains.netlify.app/guides/uk-house-prices-vs-spain.html): The average UK home costs £273,000. In a Spanish mountain town a three-bedroom flat can cost a small fraction of that. Here are the figures.
 - [Tired of UK rent? How owning a home in Spain changes the maths](https://hiddenspainbargains.netlify.app/guides/stop-renting-in-the-uk-own-a-home-in-spain.html): The average UK rent is £1,393 a month. Here is how buying a home outright in rural Spain compares, with real figures for 2026.
-- [A $417,500 median home, or a paid-off home in Spain?](https://hiddenspainbargains.netlify.app/guides/us-home-prices-vs-spain.html): The median US existing home costs $417,500. In a Spanish mountain town a three-bedroom flat costs a small fraction of that, with no mortgage.
+- [A $417,500 median home, or a paid-off home in Spain?](https://hiddenspainbargains.netlify.app/guides/us-home-prices-vs-spain.html): The median US existing home costs $417,500. In a Spanish mountain town a three-bedroom apartment costs a small fraction of that, with no mortgage.
 
 ## Remote work
 - [Work remotely from Spain for a Canadian company](https://hiddenspainbargains.netlify.app/guides/work-remotely-from-spain-for-a-canadian-company.html): Keep your Canadian job and live in Spain: the digital nomad visa income for 2026, time zones, internet in small towns and taxes to plan.

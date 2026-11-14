@@ -54,7 +54,7 @@ def nav_html():
             '<li><a href="/buyers-guide/buying-from-abroad.html">Buying from abroad</a></li>'
             '</ul></li>'
             '<li><button aria-expanded="false">Area guides</button><ul class="sub">'
-            '<li><span class="lab">León</span></li><li><a href="/">Villablino &amp; Laciana Valley</a></li>'
+            '<li><span class="lab">León</span></li><li><a href="/areas/villablino/">Villablino &amp; Laciana Valley</a></li>'
             '</ul></li>'
             '<li><a href="/guides/">Articles</a></li>'
             '<li><a class="cta" href="/#contact">Contact</a></li>'
@@ -72,3 +72,7 @@ def card_html(p):
 
 def prov_name(slug):
     return next(p["name"] for p in PROVINCES if p["slug"] == slug)
+
+# Legal owner details: shown ONLY on the legal notice / privacy pages (noindex), never elsewhere.
+OWNER = dict(name="Antonio Gila del Olmo", nif="44914757N", address="Calle Zaida, 13, Madrid (Spain)",
+             brand="La Comercial Inmobiliaria", email="lacomercialinmo@gmail.com", phone="+34 641 18 89 59")
