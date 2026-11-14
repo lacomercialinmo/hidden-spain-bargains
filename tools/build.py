@@ -10,6 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 UPDATED = "2026-11-14"
 UPDATED_TXT = "November 2026"
+CONTACT_EMAIL = os.environ.get("HSB_EMAIL", "")  # set by the site owner; the contact form works without it
 
 COUNTRIES = {
     "uk": ("United Kingdom", "🇬🇧", "From the UK"),
@@ -270,7 +271,7 @@ def homepage(guides):
             ("Can I buy without travelling to Spain?", "Yes. You can view by video call and sign through a power of attorney. You will need an NIE, the tax number every foreign buyer needs.")]
     faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{a}</p></details>" for q, a in faqs)
     ld = [{"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "Hidden Spain Bargains by La Comercial Inmobiliaria", "url": BASE + "/",
-           "telephone": "+34641188959", "email": "lacomercialinmo@gmail.com", "areaServed": ["León", "El Bierzo", "Villablino", "Spain"], "knowsLanguage": ["en", "es"]},
+           "telephone": "+34641188959", **({"email": CONTACT_EMAIL} if CONTACT_EMAIL else {}), "areaServed": ["León", "El Bierzo", "Villablino", "Spain"], "knowsLanguage": ["en", "es"]},
           {"@context": "https://schema.org", "@type": "WebSite", "name": "Hidden Spain Bargains", "url": BASE + "/"},
           {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]
     ldh = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
@@ -304,7 +305,7 @@ def homepage(guides):
         '<textarea class="full" name="message" aria-label="Message" placeholder="What are you looking for?"></textarea>'
         '<label class="full" style="font-size:13px;color:var(--muted)"><input type="checkbox" name="consent" value="yes" required style="width:auto"> I agree that my details are used to answer me, as explained in the <a href="/privacy.html">privacy policy</a>.</label>'
         '<button class="btn full" type="submit" style="font-size:16px;padding:13px">Send message</button></form>'
-        '<p style="margin-top:14px">Or WhatsApp / call <a href="https://wa.me/34641188959">+34 641 18 89 59</a> · <a href="mailto:lacomercialinmo@gmail.com">lacomercialinmo@gmail.com</a></p></div></section>'
+        '<p style="margin-top:14px">Or WhatsApp / call <a href="https://wa.me/34641188959">+34 641 18 89 59</a>' + (f' · <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>' if CONTACT_EMAIL else '') + '</p></div></section>'
         f'<section class="hsec"><div class="wrap" style="max-width:780px"><div class="kicker">FAQ</div><h2>Questions buyers ask us</h2>{faq_html}</div></section>'
         + footer())
 
@@ -359,9 +360,7 @@ def main():
     import areagen
     area_urls = areagen.build(dict(e=e, BASE=BASE, head=head, footer=footer, cta=cta, write=write, UPDATED=UPDATED, UPDATED_TXT=UPDATED_TXT))
     write("index.html", homepage(guides))
-    from legal import LEGAL_NOTICE, PRIVACY
-    write("legal-notice.html", legal_page("legal-notice", "Legal notice", LEGAL_NOTICE))
-    write("privacy.html", legal_page("privacy", "Privacy policy", PRIVACY))
+    # Legal notice and privacy pages are static (site/legal-notice.html, site/privacy.html), edited by hand.
     for rel in ["thanks.html", "areas/villablino/index.html"] + [prop_url(p)[1:] for p in PROPERTIES]:
         inject_nav(rel)
     urls = ["/", "/areas/villablino/"] + area_urls + ["/properties/", "/guides/"] + [f'/properties/{pv["slug"]}/' for pv in PROVINCES if pv["active"]] + [prop_url(p) for p in PROPERTIES] + [p["url"] for p in buyers + guides]
