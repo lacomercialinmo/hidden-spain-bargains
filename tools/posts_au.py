@@ -16,7 +16,7 @@ dict(slug="moving-to-spain-from-australia-2026", country=C, topic="visas", pilla
 <li><b>Digital nomad visa:</b> {F('dnv_income')}.</li>
 <li><b>Non-lucrative visa:</b> {F('nlv_income')}.</li></ul>
 <h2>The Spain most Australians never see</h2>
-<p>Everyone knows Barcelona and the beaches. Fewer people know the green north-west: Templar castles, Roman gold mines, wine valleys and mountains with brown bears. <a href="/guides/ponferrada-for-australians-who-love-history.html">Start with Ponferrada</a>.</p>
+<p>Everyone knows Barcelona and the beaches. Fewer people know the green north-west: Templar castles, Roman gold mines, wine valleys and mountains with brown bears. <a href="/guides/ponferrada-templar-city-of-history.html">Start with Ponferrada</a>.</p>
 {villablino()}""",
   faq=[("Can Australians work in Spain?", "Yes, Australians aged 18–30 can use the working holiday visa; others can work remotely for foreign clients on the digital nomad visa."),
        ("How much is a home in Spain compared with Australia?", "Australia's national median dwelling value is " + F('price_au') + "; in Villablino homes cost around " + F('price_villablino') + ".")],
@@ -53,7 +53,7 @@ dict(slug="working-holiday-visa-spain-for-australians", country=C, topic="visas"
        ("How long does the visa last?", "Up to 12 months.")],
   sources=src("whv", "dnv_income") + BASE_SOURCES),
 
-dict(slug="ponferrada-for-australians-who-love-history", country=C, topic="life", mins=6,
+dict(slug="ponferrada-templar-city-of-history", country=C, topic="life", mins=6,
   kicker=TOPICS["life"], title="Ponferrada: A Templar City for Australians Who Love History",
   h1="Ponferrada: a Templar city for people who love history",
   desc="A Templar castle, the Camino de Santiago, Roman gold mines and a wine valley: why Ponferrada, in north-west Spain, wins over visitors from far away.",
