@@ -1,0 +1,8 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/stats"
+  to = "/.netlify/functions/stats"
+  status = 200
