@@ -23,7 +23,7 @@ PROPERTIES = [
      "img": "/img/villablino-flat-main-bedroom.jpg", "status": "For sale"},
 ]
 
-GUIDE_COUNTRIES = [("uk", "🇬🇧 From the UK"), ("us", "🇺🇸 From the US"), ("ca", "🇨🇦 From Canada"), ("au", "🇦🇺 From Australia"), ("nz", "🇳🇿 From New Zealand")]
+GUIDE_COUNTRIES = [("cost", "Cost of living & homes"), ("work", "Remote work"), ("retire", "Retirement"), ("visas", "Visas & paperwork"), ("life", "Nature & lifestyle")]
 
 def e(s):
     return html.escape(str(s), quote=True)
@@ -45,7 +45,7 @@ def nav_html():
             '<li><a href="/properties/">Search all properties</a></li><li><span class="lab">By province</span></li>' + prov +
             '</ul></li>'
             '<li><button aria-expanded="false">Move to Spain</button><ul class="sub">'
-            '<li><a href="/guides/">All country guides</a></li><li><span class="lab">By country</span></li>' + guides +
+            '<li><a href="/guides/">All articles</a></li><li><span class="lab">By topic</span></li>' + guides +
             '</ul></li>'
             '<li><button aria-expanded="false">Buyers guide</button><ul class="sub">'
             '<li><a href="/buyers-guide/how-we-work.html">How our home search works</a></li>'

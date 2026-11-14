@@ -49,6 +49,18 @@ FACTS = {
     "vb_population": dict(text="7,585 residents (INE, 2025)", src="INE", url="https://www.ine.es/", checked="2026-11-14", volatile=False),
     "vb_unesco": dict(text="UNESCO Biosphere Reserve since 2003, about 22,000 hectares", src="Spain.info – Laciana Valley", url="https://www.spain.info/en/nature/valle-laciana-biosphere-reserve", checked="2026-11-14", volatile=False),
     "vb_altitude": dict(text="1,015 m", src="AEMET – Villablino", url="https://www.aemet.es/en/eltiempo/prediccion/municipios/villablino-id24202", checked="2026-11-14", volatile=False),
+    # --- Ponferrada / El Bierzo ---
+    "pf_population": dict(text="63,186 residents (INE, 2024)", src="Diario de León", url="https://www.diariodeleon.es/sociedad/251212/2069126/municipios-grandes-impulsan-poblacion-leon.html", checked="2026-11-14", volatile=False),
+    "pf_castle": dict(text="the Templar knights held Ponferrada until 1312; the castle covers about 8,000 m²", src="Turismo Castilla y León / TerraNostrum", url="https://www.turismocastillayleon.com/es/arte-cultura-patrimonio/castillos/castillo-ponferrada", checked="2026-11-14", volatile=False),
+    "pf_train": dict(text="direct trains to Madrid take around four hours", src="Railclick – Madrid to Ponferrada", url="https://railclick.com/es/train/madrid/ponferrada", checked="2026-11-14", volatile=True),
+    "medulas": dict(text="UNESCO World Heritage Site since 1997 and the largest open-pit gold mine of the Roman Empire, about 25 km south-west of Ponferrada", src="Wikipedia / UNESCO", url="https://en.wikipedia.org/wiki/Las_M%C3%A9dulas", checked="2026-11-14", volatile=False),
+    "somiedo": dict(text="an Asturian natural park and Biosphere Reserve (since 2000) of 283 km², a stronghold of the Cantabrian brown bear, with guided bear-watching trips", src="Turismo Asturias", url="https://www.turismoasturias.es/en/descubre/naturaleza/reservas-de-la-biosfera/parque-natural-de-somiedo", checked="2026-11-14", volatile=False),
+    "vb_climate": dict(text="average highs of about 7°C in January and 28°C in July, with drier summers (approximate model averages)", src="WeatherAPI – Villablino climate", url="https://www.weatherapi.com/history/q/villablino-725979", checked="2026-11-14", volatile=False),
+    # --- Castellón ---
+    "cs_price_prov": dict(text="€1,601/m² (average asking price, June 2026), the lowest of the three Valencian provinces, against €2,102 in Valencia and €2,834 in Alicante", src="Idealista via Finanzas3", url="https://finantresnoticias.com/tu-dinero/castellon-playas-valencianas-pisos-asequibles/", checked="2026-11-14", volatile=True),
+    "cs_price_city": dict(text="€1,317/m² (average, Q1 2026)", src="Tinsa – Castellón de la Plana", url="https://www.tinsa.es/precio-vivienda/comunitat-valenciana/castellon/castellon/", checked="2026-11-14", volatile=True),
+    "cs_climate": dict(text="January highs of about 14°C, August highs of about 31°C and around 444 mm of rain in a normal year", src="Climate-Data.org / Snowy (AEMET station, 1991–2020)", url="https://es.climate-data.org/location/2097/", checked="2026-11-14", volatile=False),
+    "price_toronto": dict(text="C$1,024,108 (GTA average selling price, October 2026)", src="TRREB Market Watch", url="https://trreb.ca/wp-content/files/news_releases/news2026/nr_market_watch_1026.pdf", checked="2026-11-14", volatile=True),
 }
 
 def F(key):

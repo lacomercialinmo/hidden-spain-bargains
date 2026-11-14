@@ -2,6 +2,7 @@
 """Builds Hidden Spain Bargains: menu, guides, buyers guide, properties search, sitemap, robots, llms."""
 import glob, html, importlib.util, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from postlib import TOPICS
 from sitedata import BASE, PROVINCES, PROPERTIES, nav_html, NAV_HEAD, NAV_JS, card_html, prop_url, prov_name
 import facts
 
@@ -64,8 +65,7 @@ def gcard(p):
     if p.get("img"):
         pic = f'<img src="/img/villablino-{p["img"]}.jpg" alt="{e(IMG_ALT[p["img"]])}" loading="lazy">'
     else:
-        c = COUNTRIES.get(p.get("country"), ("", "📘", "Buyers guide"))
-        pic = f'<div class="ph">{c[1]} {e(c[2])}</div>'
+        pic = f'<div class="ph">{e(TOPICS.get(p.get("topic"), "Buyers guide"))}</div>'
     return f'<a class="gcard" href="{p["url"]}"><div>{pic}</div><div class="t"><b>{e(p["h1"])}</b><span>{e(p["desc"][:110])}…</span></div></a>'
 
 def article(p, related, section, section_url, who):
@@ -115,18 +115,18 @@ def write(rel, content):
 
 def guides_hub(posts):
     blocks = []
-    for code, (cname, flag, clabel) in COUNTRIES.items():
-        ps = [p for p in posts if p["country"] == code]
+    for code, name in TOPICS.items():
+        ps = [p for p in posts if p.get("topic") == code]
         if ps:
-            blocks.append(f'<h2 id="{code}">{flag} Moving to Spain {e(clabel.lower())}</h2><div class="cards">{"".join(gcard(p) for p in ps)}</div>')
+            blocks.append(f'<h2 id="{code}">{e(name)}</h2><div class="cards">{"".join(gcard(p) for p in ps)}</div>')
     if not blocks:
-        blocks.append('<p>New articles for people moving from the UK, the US, Canada, Australia and New Zealand are on their way.</p>')
+        blocks.append('<p>New articles are on their way.</p>')
     items = [{"@type": "ListItem", "position": i + 1, "url": BASE + p["url"], "name": p["h1"]} for i, p in enumerate(posts)]
-    ld = '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": "Moving to Spain: articles by country", "url": BASE + "/guides/", "mainEntity": {"@type": "ItemList", "itemListElement": items}}, ensure_ascii=False) + '</script>'
-    jump = " · ".join(f'<a href="#{c}">{f} {e(n)}</a>' for c, (n, f, _) in COUNTRIES.items())
-    return (head("Moving to Spain: Guides for UK, US, Canada, Australia & NZ", "Honest guides to moving to Spain from the UK, US, Canada, Australia and New Zealand: visas, house prices, remote work, retirement and mountain life.", BASE + "/guides/", ld) +
-            '<header class="head"><div class="kicker">Articles</div><h1>Moving to Spain, country by country</h1>'
-            '<p class="lead">Visas, house prices, remote work and retirement, explained for people coming from the UK, the US, Canada, Australia and New Zealand.</p>'
+    ld = '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "CollectionPage", "name": "Moving to Spain: articles", "url": BASE + "/guides/", "mainEntity": {"@type": "ItemList", "itemListElement": items}}, ensure_ascii=False) + '</script>'
+    jump = " · ".join(f'<a href="#{c}">{e(n)}</a>' for c, n in TOPICS.items())
+    return (head("Moving to Spain: Articles on Homes, Visas, Work & Retirement", "Honest articles about moving to Spain: home prices, cost of living, remote work, retirement, visas and quiet mountain life in north-west Spain.", BASE + "/guides/", ld) +
+            '<header class="head"><div class="kicker">Articles</div><h1>A new life in Spain</h1>'
+            '<p class="lead">Home prices, visas, remote work, retirement and everyday life, explained simply, with figures we check every time we update the site.</p>'
             f'<p class="meta">{jump}</p></header><section class="related" style="border:0;padding-top:10px"><div class="wrap">{"".join(blocks)}</div></section>' + footer())
 
 PROP_CSS = '''<style>
@@ -260,8 +260,8 @@ def main():
         assert len(p["title"]) <= 65, (p["slug"], len(p["title"]))
         assert len(p["desc"]) <= 160, (p["slug"], len(p["desc"]))
     for p in guides:
-        same = [q for q in guides if q["country"] == p["country"] and q is not p][:3]
-        write(f'guides/{p["slug"]}.html', article(p, same + buyers[:3], "Articles", "/guides/", "from%20" + COUNTRIES[p["country"]][0].replace(" ", "%20")))
+        same = ([q for q in guides if q["country"] == p["country"] and q is not p] + [q for q in guides if q.get("topic") == p.get("topic") and q["country"] != p["country"]])[:3]
+        write(f'guides/{p["slug"]}.html', article(p, same + buyers[:3], "Articles", "/guides/", ""))
     for p in buyers:
         rel = [q for q in buyers if q is not p] + [q for q in guides if q.get("pillar")][:3]
         write(f'buyers-guide/{p["slug"]}.html', article(p, rel[:6], "Buyers guide", "/buyers-guide/how-we-work.html", ""))
@@ -283,10 +283,10 @@ def main():
     L += [f'- [{p["title"]} — €{p["price"]:,}]({BASE}{prop_url(p)}): {p["m2"]} m², {p["beds"]} bedrooms, {p["baths"]} bathroom, {p["town"]} ({prov_name(p["province"])}). Ref {p["ref"]}.' for p in PROPERTIES]
     L += ["", "## Area guide", f"- [Living in Villablino, Spain]({BASE}/): UNESCO Laciana Valley, services, schools, distances to airports.", "", "## Buyers guide"]
     L += [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in buyers]
-    for code, (cname, flag, clabel) in COUNTRIES.items():
-        ps = [p for p in guides if p["country"] == code]
+    for code, name in TOPICS.items():
+        ps = [p for p in guides if p.get("topic") == code]
         if ps:
-            L += ["", f"## Moving to Spain from {cname}"] + [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in ps]
+            L += ["", f"## {name}"] + [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in ps]
     L += ["", "## Contact", "- Agency: La Comercial Inmobiliaria", "- WhatsApp / phone: +34 641 18 89 59", "- Web: https://lacomercial.app.link"]
     write("llms.txt", "\n".join(L) + "\n")
     print(f"built: {len(guides)} articles, {len(buyers)} buyers-guide pages, {len(PROPERTIES)} properties")
