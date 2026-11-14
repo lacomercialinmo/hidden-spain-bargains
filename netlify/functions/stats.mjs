@@ -18,7 +18,7 @@ export default async (req) => {
   const since = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
   const { blobs } = await getStore("visits").list();
   const all = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since)
-    .map((p) => ({ day: p[0], country: decodeURIComponent(p[1]), device: p[2], ref: decodeURIComponent(p[3]), page: decodeURIComponent(p[4]), lang: p.length >= 7 ? decodeURIComponent(p[5]) : "" }))
+    .map((p) => ({ day: p[0], country: decodeURIComponent(p[1]), device: p[2], ref: decodeURIComponent(p[3]), page: decodeURIComponent(p[4]), lang: p.length >= 7 ? decodeURIComponent(p[5]) : "", city: p.length >= 8 ? decodeURIComponent(p[6]) + " (" + decodeURIComponent(p[1]) + ")" : "" }))
     .map((r) => ({ ...r, expat: r.country === "Spain" && r.lang && !/^(es|ca|gl|eu)/.test(r.lang) }));
   const tgt = all.filter((r) => TARGET.includes(r.country) || r.expat);
   const expats = all.filter((r) => r.expat).length;
@@ -48,6 +48,7 @@ a{color:#8B0000;margin-right:10px}a.on{font-weight:700;text-decoration:none;bord
 <h1>Hidden Spain Bargains · Visits</h1><p>${links}</p><p>${views}</p>
 <div class=kpis><div class="kpi main"><b>${tgt.length}</b><span>target audience (${pct}%)</span></div><div class=kpi><b>${expats}</b><span>foreigners in Spain</span></div><div class=kpi><b>${es.length}</b><span>Spanish-speaking, in Spain</span></div><div class=kpi><b>${rest}</b><span>other countries</span></div></div>
 ${table(only === "target" ? "Target countries" : "By country", only === "target" ? tgt : all, "country")}
+${table("Cities", rows, "city")}
 ${table("Browser language", rows, "lang")}
 ${table("Pages they read", rows, "page")}
 ${table("Where they come from", rows, "ref")}

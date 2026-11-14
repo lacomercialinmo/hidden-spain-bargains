@@ -15,7 +15,7 @@ export default async (req, context) => {
   const country = context.geo?.country?.name || "Unknown";
   const day = new Date().toISOString().slice(0, 10);
   const lang = String(d.l || req.headers.get("accept-language") || "").slice(0, 5).toLowerCase();
-  const key = [day, clean(country), device, clean(ref), clean(d.p || "/"), clean(lang, 5), crypto.randomUUID().slice(0, 8)].join("|");
+  const key = [day, clean(country), device, clean(ref), clean(d.p || "/"), clean(lang, 5), clean(context.geo?.city || "Unknown", 40), crypto.randomUUID().slice(0, 8)].join("|");
   await getStore("visits").set(key, "");
   return new Response(null, { status: 204 });
 };
