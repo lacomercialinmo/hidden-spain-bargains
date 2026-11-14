@@ -18,9 +18,11 @@ export default async (req) => {
   const since = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
   const { blobs } = await getStore("visits").list();
   const all = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since)
-    .map(([day, country, device, ref, page]) => ({ day, country: decodeURIComponent(country), device, ref: decodeURIComponent(ref), page: decodeURIComponent(page) }));
-  const tgt = all.filter((r) => TARGET.includes(r.country));
-  const es = all.filter((r) => r.country === "Spain");
+    .map((p) => ({ day: p[0], country: decodeURIComponent(p[1]), device: p[2], ref: decodeURIComponent(p[3]), page: decodeURIComponent(p[4]), lang: p.length >= 7 ? decodeURIComponent(p[5]) : "" }))
+    .map((r) => ({ ...r, expat: r.country === "Spain" && r.lang && !/^(es|ca|gl|eu)/.test(r.lang) }));
+  const tgt = all.filter((r) => TARGET.includes(r.country) || r.expat);
+  const expats = all.filter((r) => r.expat).length;
+  const es = all.filter((r) => r.country === "Spain" && !r.expat);
   const rest = all.length - tgt.length - es.length;
   const rows = only === "all" ? all : tgt;
 
@@ -28,7 +30,7 @@ export default async (req) => {
   const table = (title, list, f, byKey) => {
     const e = count(list, f); if (byKey) e.sort((a, b) => b[0].localeCompare(a[0]));
     const max = Math.max(1, ...e.map((x) => x[1]));
-    const label = (k) => (f === "country" ? (FLAGS[k] ? FLAGS[k] + " " : "") + k : k);
+    const label = (k) => (f === "country" ? (FLAGS[k] ? FLAGS[k] + " " : "") + k : (k || "unknown"));
     return `<h2>${title}</h2><table>${e.map(([k, v]) => `<tr${f === "country" && TARGET.includes(k) ? " class=t" : ""}><td>${esc(label(k))}</td><td class=n>${v}</td><td class=bar><i style="width:${(v / max) * 100}%"></i></td></tr>`).join("") || "<tr><td>No visits yet</td></tr>"}</table>`;
   };
   const q = (d, v) => `?key=${encodeURIComponent(key)}&days=${d}&view=${v}`;
@@ -38,19 +40,20 @@ export default async (req) => {
 
   const html = `<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content=noindex><title>Visits · Hidden Spain Bargains</title>
 <style>body{font:16px/1.4 system-ui,sans-serif;margin:0 auto;max-width:720px;padding:20px;color:#1a1a1a}h1{font-size:22px}h2{font-size:17px;margin:28px 0 8px;color:#8B0000}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.kpi{background:#f6f1ea;padding:14px;border-radius:8px}.kpi b{display:block;font-size:34px;color:#8B0000;line-height:1.1}.kpi span{font-size:13px;color:#555}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}.kpi{background:#f6f1ea;padding:14px;border-radius:8px}.kpi b{display:block;font-size:34px;color:#8B0000;line-height:1.1}.kpi span{font-size:13px;color:#555}
 .kpi.main{background:#8B0000;color:#fff}.kpi.main b,.kpi.main span{color:#fff}
 table{width:100%;border-collapse:collapse}td{padding:6px 4px;border-bottom:1px solid #eee;word-break:break-word}.n{text-align:right;width:50px;font-weight:600}
 .bar{width:35%}.bar i{display:block;height:10px;background:#8B0000;border-radius:5px}tr.t td:first-child{font-weight:700}
 a{color:#8B0000;margin-right:10px}a.on{font-weight:700;text-decoration:none;border-bottom:2px solid #8B0000}.note{font-size:13px;color:#666;margin-top:24px}</style></head><body>
 <h1>Hidden Spain Bargains · Visits</h1><p>${links}</p><p>${views}</p>
-<div class=kpis><div class="kpi main"><b>${tgt.length}</b><span>from target countries (${pct}%)</span></div><div class=kpi><b>${es.length}</b><span>from Spain</span></div><div class=kpi><b>${rest}</b><span>other countries</span></div></div>
+<div class=kpis><div class="kpi main"><b>${tgt.length}</b><span>target audience (${pct}%)</span></div><div class=kpi><b>${expats}</b><span>foreigners in Spain</span></div><div class=kpi><b>${es.length}</b><span>Spanish-speaking, in Spain</span></div><div class=kpi><b>${rest}</b><span>other countries</span></div></div>
 ${table(only === "target" ? "Target countries" : "By country", only === "target" ? tgt : all, "country")}
+${table("Browser language", rows, "lang")}
 ${table("Pages they read", rows, "page")}
 ${table("Where they come from", rows, "ref")}
 ${table("By day", rows, "day", true)}
 ${table("Device", rows, "device")}
-<p class=note>Your own visits from this device are not counted (a private cookie was set when you opened this page). Target countries: ${TARGET.map(esc).join(", ")}.</p>
+<p class=note>Your own visits from this device are not counted (a private cookie was set when you opened this page). Target audience = visits from ${TARGET.map(esc).join(", ")}, plus visits from Spain whose browser is not in Spanish, Catalan, Galician or Basque (foreigners living in Spain). Visits recorded before 14 Nov 2026 have no language data.</p>
 <script>document.cookie="hsb_me=1; max-age=315360000; path=/; SameSite=Lax"</script>
 </body></html>`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });

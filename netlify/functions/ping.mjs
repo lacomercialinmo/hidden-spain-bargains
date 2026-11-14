@@ -14,7 +14,8 @@ export default async (req, context) => {
   const device = /mobi|android|iphone/i.test(ua) ? "mobile" : (/ipad|tablet/i.test(ua) ? "tablet" : "desktop");
   const country = context.geo?.country?.name || "Unknown";
   const day = new Date().toISOString().slice(0, 10);
-  const key = [day, clean(country), device, clean(ref), clean(d.p || "/"), crypto.randomUUID().slice(0, 8)].join("|");
+  const lang = String(d.l || req.headers.get("accept-language") || "").slice(0, 5).toLowerCase();
+  const key = [day, clean(country), device, clean(ref), clean(d.p || "/"), clean(lang, 5), crypto.randomUUID().slice(0, 8)].join("|");
   await getStore("visits").set(key, "");
   return new Response(null, { status: 204 });
 };

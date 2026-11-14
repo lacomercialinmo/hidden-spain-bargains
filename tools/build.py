@@ -33,7 +33,7 @@ IMG_ALT = {
     "postal": "Post office service in Villablino",
 }
 WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4.1-4.9-4.3-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.7-.1 1.3z"/></svg>'
-PING = '<script>try{if(document.cookie.indexOf("hsb_me=1")<0)fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,w:screen.width})})}catch(e){}</script>'
+PING = '<script>try{if(document.cookie.indexOf("hsb_me=1")<0)fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,l:navigator.language,w:screen.width})})}catch(e){}</script>'
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">')
 

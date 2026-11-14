@@ -345,7 +345,7 @@ const lb=document.getElementById('lb'),li=lb.querySelector('img');
 document.querySelectorAll('.photo img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.classList.add('on')}));
 lb.addEventListener('click',()=>lb.classList.remove('on'));
 </script>
-<script>try{if(document.cookie.indexOf("hsb_me=1")<0)fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,w:screen.width})})}catch(e){}</script>
+<script>try{if(document.cookie.indexOf("hsb_me=1")<0)fetch("/api/ping",{method:"POST",keepalive:true,headers:{"content-type":"application/json"},body:JSON.stringify({p:location.pathname,r:document.referrer,l:navigator.language,w:screen.width})})}catch(e){}</script>
 <script src="/js/menu.js" defer></script>
 </body>
 </html>
