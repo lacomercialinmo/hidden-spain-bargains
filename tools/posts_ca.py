@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 from postlib import villablino, price_table, BASE_SOURCES, TOPICS
 
 C = "ca"
@@ -25,7 +25,7 @@ dict(slug="moving-to-spain-from-canada-2026", country=C, topic="visas", pillar=T
 dict(slug="from-toronto-to-castellon", country=C, topic="cost", mins=6,
   kicker=TOPICS["cost"], title="From Toronto to Castellón: Trading Stress for the Sea",
   h1="From Toronto to Castellón: trading stress for the Mediterranean",
-  desc="A Toronto home averages over C$1 million. On Spain's Castellón coast, homes average about €1,600/m², with mild winters and warm seas.",
+  desc="A Toronto home averages over C$1 million. On Spain's Castellón coast, homes average about €1,450/m², with mild winters and warm seas.",
   lead=f"You work hard, you pay a fortune and you still feel you're running to stand still. The average home in the Greater Toronto Area sells for {F('price_toronto')}. On the Mediterranean coast of Castellón, the average asking price is {F('cs_price_prov')}.",
   body=f"""<h2>A different kind of rich</h2>
 <p>Some of the happiest people we know left big, expensive cities for smaller places where life is slower. Castellón is that kind of place: a Mediterranean province between Valencia and Barcelona, with beaches, orange groves, mountain villages inland and a calm provincial capital.</p>
@@ -38,7 +38,7 @@ dict(slug="from-toronto-to-castellon", country=C, topic="cost", mins=6,
 <h2>We are starting to look in Castellón</h2>
 <p>Castellón is the next province we are opening. <a href="/properties/#request">Tell us what you want</a> and we will search there for you, or start with the mountain homes we already have in León.</p>""",
   faq=[("Is Castellón cheaper than Valencia and Alicante?", "Yes. Castellón had an average asking price of " + F('cs_price_prov') + "."),
-       ("What is the weather like in Castellón?", F('cs_climate').capitalize() + ".")],
+       ("What is the weather like in Castellón?", Fc('cs_climate') + ".")],
   sources=src("price_toronto", "cs_price_prov", "cs_price_city", "cs_climate", "whv", "dnv_income")),
 
 dict(slug="youth-mobility-visa-spain-for-canadians", country=C, topic="visas", img="ski", mins=5,
@@ -72,7 +72,7 @@ dict(slug="trade-canadian-winters-for-spanish-ones", country=C, topic="life", im
 <p>On the Mediterranean coast, Castellón has {F('cs_climate')}. <a href="/guides/from-toronto-to-castellon.html">Read our Toronto-to-Castellón guide</a>.</p>
 {villablino()}""",
   faq=[("Does it snow in Villablino?", "Yes, especially in the mountains around it. Leitariegos ski resort is about 15 km away."),
-       ("What are winters like in Castellón?", F('cs_climate').capitalize() + ".")],
+       ("What are winters like in Castellón?", Fc('cs_climate') + ".")],
   sources=src("vb_climate", "cs_climate") + BASE_SOURCES),
 
 dict(slug="work-remotely-from-spain-for-a-canadian-company", country=C, topic="work", img="nature", mins=5,
@@ -90,7 +90,7 @@ dict(slug="work-remotely-from-spain-for-a-canadian-company", country=C, topic="w
 <p>If you live in Spain more than 183 days a year you normally become a Spanish tax resident. Plan the move with a cross-border tax adviser.</p>
 {villablino()}""",
   faq=[("What is the time difference between Toronto and Spain?", "Spain is six hours ahead of Toronto."),
-       ("How much income do I need?", F('dnv_income').capitalize() + ".")],
+       ("How much income do I need?", Fc('dnv_income') + ".")],
   sources=src("dnv_income") + BASE_SOURCES),
 
 dict(slug="retire-in-spain-from-canada", country=C, topic="retire", img="heritage", mins=5,

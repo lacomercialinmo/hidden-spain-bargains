@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 from postlib import villablino, price_table, BASE_SOURCES, TOPICS
 
 C = "nz"
@@ -28,7 +28,7 @@ dict(slug="nz-house-prices-vs-spain", country=C, topic="cost", img="town", mins=
 <h2>Running costs</h2>
 <p>A yearly municipal tax (IBI), and, if you don't live in Spain, a yearly non-resident tax: {F('irnr_imputed')}. <a href="/buyers-guide/buying-costs-and-taxes.html">All costs explained</a>.</p>
 {villablino()}""",
-  faq=[("What is the median house price in NZ?", F('price_nz').capitalize() + "."),
+  faq=[("What is the median house price in NZ?", Fc('price_nz') + "."),
        ("How much is a home in Villablino?", "Around " + F('price_villablino') + ".")],
   sources=src("price_nz", "itp_cyl", "irnr_imputed") + BASE_SOURCES),
 
@@ -38,7 +38,7 @@ dict(slug="working-holiday-visa-spain-for-new-zealanders", country=C, topic="vis
   desc="Kiwis aged 18 to 30 can live and work in Spain for up to a year. How the scheme works and how to use your OE to find a place to come back to.",
   lead=f"The OE is a Kiwi tradition. Spain's version gives New Zealanders {F('whv')}.",
   body=f"""<h2>The basics</h2>
-<p>{F('whv').capitalize()}. You apply through the Spanish consulate and show savings and insurance.</p>
+<p>{Fc('whv')}. You apply through the Spanish consulate and show savings and insurance.</p>
 <h2>Beyond London</h2>
 <p>Most Kiwis do their OE in London. Spain offers a different year: lower costs, sun, mountains and a language that opens up a whole continent.</p>
 <h2>Staying on</h2>
@@ -76,7 +76,7 @@ dict(slug="las-medulas-and-el-bierzo-landscapes", country=C, topic="life", img="
 <h2>The Laciana Valley</h2>
 <p>North of Ponferrada, Villablino sits in a UNESCO Biosphere Reserve with homes around {F('price_villablino')}.</p>
 {villablino()}""",
-  faq=[("What is Las Médulas?", F('medulas').capitalize() + "."),
+  faq=[("What is Las Médulas?", Fc('medulas') + "."),
        ("Where is El Bierzo?", "In León province, north-west Spain, around the city of Ponferrada.")],
   sources=src("medulas", "pf_population", "pf_castle") + BASE_SOURCES),
 
@@ -95,6 +95,6 @@ dict(slug="remote-work-from-spain-on-nz-income", country=C, topic="work", img="l
 <p>Spend more than 183 days a year in Spain and you normally become a Spanish tax resident. Get cross-border advice first.</p>
 {villablino()}""",
   faq=[("What is the time difference between NZ and Spain?", "Around ten to twelve hours, depending on the season."),
-       ("How much do I need for the digital nomad visa?", F('dnv_income').capitalize() + ".")],
+       ("How much do I need for the digital nomad visa?", Fc('dnv_income') + ".")],
   sources=src("dnv_income") + BASE_SOURCES),
 ]

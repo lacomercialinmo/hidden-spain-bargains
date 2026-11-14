@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 from postlib import villablino, price_table, BASE_SOURCES, TOPICS
 
 C = "uk"
@@ -17,10 +17,10 @@ dict(slug="moving-to-spain-from-the-uk-2026", country=C, topic="visas", pillar=T
 <li><b>Retired or living on savings:</b> the non-lucrative visa. You need {F('nlv_income')}.</li></ul>
 <p>Owning a home does not give you residence on its own. <a href="/buyers-guide/visas-to-live-in-spain.html">See our visa guide</a>.</p>
 <h2>Healthcare and pensions</h2>
-<p>{F('uk_s1').capitalize()}. And {F('uk_pension_uprated')}.</p>
+<p>{Fc('uk_s1')}. And {F('uk_pension_uprated')}.</p>
 {villablino()}""",
-  faq=[("Can I live in Spain after Brexit?", "Yes, with a visa. " + F('uk_90_180').capitalize() + "."),
-       ("Is the UK State Pension paid in Spain?", "Yes. " + F('uk_pension_uprated').capitalize() + "."),
+  faq=[("Can I live in Spain after Brexit?", "Yes, with a visa. " + Fc('uk_90_180') + "."),
+       ("Is the UK State Pension paid in Spain?", "Yes. " + Fc('uk_pension_uprated') + "."),
        ("How much does a home cost in rural Spain?", "In Villablino around " + F('price_villablino') + ".")],
   sources=src("uk_90_180", "dnv_income", "nlv_income", "uk_s1", "uk_pension_uprated", "price_uk", "rent_uk") + BASE_SOURCES),
 
@@ -28,18 +28,18 @@ dict(slug="retire-in-spain-on-a-uk-state-pension", country=C, topic="retire", im
   kicker=TOPICS["retire"], title="Retiring to Spain on a UK State Pension: What You Need",
   h1="Retiring to Spain on a UK State Pension",
   desc="How British pensioners retire to Spain in 2026: the non-lucrative visa, S1 healthcare, pension uprating and a home bought outright in a quiet mountain town.",
-  lead=f"Retiring to Spain is still very possible after Brexit. {F('uk_pension_uprated').capitalize()}, and {F('uk_s1')}.",
+  lead=f"Retiring to Spain is still very possible after Brexit. {Fc('uk_pension_uprated')}, and {F('uk_s1')}.",
   body=f"""<h2>Step 1: the non-lucrative visa</h2>
 <p>This is the visa for people who will not work in Spain. You need {F('nlv_income')}. A State Pension on its own is often not enough, but most retirees combine it with a workplace or private pension, or savings.</p>
 <h2>Step 2: healthcare with the S1</h2>
-<p>{F('uk_s1').capitalize()}. Before you reach State Pension age, plan for private health insurance.</p>
+<p>{Fc('uk_s1')}. Before you reach State Pension age, plan for private health insurance.</p>
 <h2>Step 3: a home with no mortgage</h2>
 <p>Retiring without rent or a mortgage changes everything. With homes in Villablino at around {F('price_villablino')}, many people can buy outright with the money from selling a UK home, and keep the rest as savings.</p>
 <h2>Why a mountain town and not the Costas?</h2>
 <p>Green valleys, four seasons, stone villages and no tourist crowds. Life is quiet, but the town has a health centre, pharmacies and shops within walking distance.</p>
 {villablino()}""",
-  faq=[("How much do I need for the non-lucrative visa?", F('nlv_income').capitalize() + "."),
-       ("Will I get free healthcare in Spain as a UK pensioner?", F('uk_s1').capitalize() + ".")],
+  faq=[("How much do I need for the non-lucrative visa?", Fc('nlv_income') + "."),
+       ("Will I get free healthcare in Spain as a UK pensioner?", Fc('uk_s1') + ".")],
   sources=src("nlv_income", "uk_s1", "uk_pension_uprated") + BASE_SOURCES),
 
 dict(slug="uk-house-prices-vs-spain", country=C, topic="cost", img="town", mins=5,
@@ -47,15 +47,15 @@ dict(slug="uk-house-prices-vs-spain", country=C, topic="cost", img="town", mins=
   h1="UK house prices vs Spain: what your money buys",
   desc=f"The average UK home costs {F('price_uk').split(' (')[0]}. In a Spanish mountain town a three-bedroom flat can cost a small fraction of that. Here are the figures.",
   lead=f"The average UK home costs {F('price_uk')}. In Villablino, in north-west Spain, homes sell for around {F('price_villablino')}.",
-  body=f"""{price_table([("United Kingdom (average home)", F('price_uk')), ("Spain (average, per m²)", F('price_spain')), ("Castile and León (per m²)", F('price_cyl')), ("Villablino (per m²)", F('price_villablino'))])}
+  body=f"""{price_table([("United Kingdom (average home)", F('price_uk')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>What that means in practice</h2>
 <p>Our current flat in Villablino has three bedrooms and 74 m² and is listed at €42,000. Add the regional transfer tax ({F('itp_cyl')}) and notary fees, and you have the full cost of owning a home with no mortgage.</p>
 <h2>The catch? There isn't one, but there is a trade-off</h2>
 <p>You won't be in a big city. You will be in a real town of {F('vb_population')}, surrounded by mountains, with fibre internet and services. For many people that is exactly the point.</p>
 {villablino()}""",
-  faq=[("How much is the average home in the UK?", F('price_uk').capitalize() + "."),
+  faq=[("How much is the average home in the UK?", Fc('price_uk') + "."),
        ("How much is a home in Villablino?", "Around " + F('price_villablino') + ".")],
-  sources=src("price_uk", "price_cyl", "itp_cyl") + BASE_SOURCES),
+  sources=src("price_uk", "itp_cyl") + BASE_SOURCES),
 
 dict(slug="stop-renting-in-the-uk-own-a-home-in-spain", country=C, topic="cost", img="pool", mins=5,
   kicker=TOPICS["cost"], title="Tired of UK Rent? How Owning in Spain Changes the Maths",
@@ -70,7 +70,7 @@ dict(slug="stop-renting-in-the-uk-own-a-home-in-spain", country=C, topic="cost",
 <li>If you don't live in Spain, a yearly non-resident tax: {F('irnr_imputed')}.</li></ul>
 <p>See every cost in our <a href="/buyers-guide/buying-costs-and-taxes.html">costs and taxes guide</a>.</p>
 {villablino()}""",
-  faq=[("What is the average rent in the UK?", F('rent_uk').capitalize() + "."),
+  faq=[("What is the average rent in the UK?", Fc('rent_uk') + "."),
        ("What taxes do I pay to buy in Castile and León?", "A transfer tax of " + F('itp_cyl') + ", plus notary and registry fees.")],
   sources=src("rent_uk", "itp_cyl", "irnr_imputed") + BASE_SOURCES),
 
@@ -88,7 +88,7 @@ dict(slug="work-remotely-from-spain-for-a-uk-company", country=C, topic="work", 
 <h2>Taxes</h2>
 <p>If you live in Spain more than 183 days a year you normally become a Spanish tax resident. Talk to a cross-border tax adviser before you move. <a href="/buyers-guide/buying-costs-and-taxes.html">Read our tax overview</a>.</p>
 {villablino()}""",
-  faq=[("How much do I need to earn for the Spanish digital nomad visa?", F('dnv_income').capitalize() + "."),
+  faq=[("How much do I need to earn for the Spanish digital nomad visa?", Fc('dnv_income') + "."),
        ("What is the time difference between the UK and Spain?", "Spain is one hour ahead of the UK.")],
   sources=src("dnv_income") + BASE_SOURCES),
 

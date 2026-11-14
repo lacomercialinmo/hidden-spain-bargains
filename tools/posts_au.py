@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 from postlib import villablino, price_table, BASE_SOURCES, TOPICS
 
 C = "au"
@@ -27,15 +27,15 @@ dict(slug="priced-out-in-australia-own-a-home-in-spain", country=C, topic="cost"
   h1="Priced out in Australia? You can still own a home",
   desc=f"Australia's median dwelling is worth {F('price_au').split(' (')[0]}. In a Spanish mountain town, a three-bedroom flat costs a fraction of that, with no mortgage.",
   lead=f"Rate rises, auctions you can't win, a deposit that keeps moving away. Australia's national median dwelling value is {F('price_au')}. Owning a home doesn't have to be a lifetime project.",
-  body=f"""{price_table([("Australia (national median dwelling)", F('price_au')), ("Spain (average, per m²)", F('price_spain')), ("Castile and León (per m²)", F('price_cyl')), ("Villablino (per m²)", F('price_villablino'))])}
+  body=f"""{price_table([("Australia (national median dwelling)", F('price_au')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>A real example</h2>
 <p>Our current flat in Villablino has three bedrooms, 74 m², south-facing rooms and furniture included, listed at €42,000. Add the transfer tax ({F('itp_cyl')}) and notary fees, and that is the full price of owning it outright.</p>
 <h2>No auction, no bidding war</h2>
 <p>In Spain you negotiate. That is our job: we talk to the seller in Spanish and push the price down for you.</p>
 {villablino()}""",
-  faq=[("What is Australia's median home value?", F('price_au').capitalize() + "."),
+  faq=[("What is Australia's median home value?", Fc('price_au') + "."),
        ("Can foreigners buy property in Spain?", "Yes. You need an NIE (foreigner tax number). Buying does not give you residence; for that you need a visa.")],
-  sources=src("price_au", "price_cyl", "itp_cyl") + BASE_SOURCES),
+  sources=src("price_au", "itp_cyl") + BASE_SOURCES),
 
 dict(slug="working-holiday-visa-spain-for-australians", country=C, topic="visas", img="nature", mins=5,
   kicker=TOPICS["visas"], title="Spain Working Holiday Visa for Australians: A Year in Spain",
@@ -59,7 +59,7 @@ dict(slug="ponferrada-templar-city-of-history", country=C, topic="life", mins=6,
   desc="A Templar castle, the Camino de Santiago, Roman gold mines and a wine valley: why Ponferrada, in north-west Spain, wins over visitors from far away.",
   lead=f"Some places have stories older than whole countries. In Ponferrada, {F('pf_castle')}. Pilgrims on the Camino de Santiago still walk past its walls.",
   body=f"""<h2>A castle that is the city's heart</h2>
-<p>Ponferrada's castle is one of the great fortresses of north-west Spain. {F('pf_castle').capitalize()}. You don't visit it once; you walk past it on your way to buy bread.</p>
+<p>Ponferrada's castle is one of the great fortresses of north-west Spain. {Fc('pf_castle')}. You don't visit it once; you walk past it on your way to buy bread.</p>
 <h2>Roman gold and a wine valley</h2>
 <p>Las Médulas is a {F('medulas')}. Around Ponferrada, El Bierzo is a green valley of vineyards and orchards.</p>
 <h2>A real city, not a museum</h2>
@@ -68,8 +68,8 @@ dict(slug="ponferrada-templar-city-of-history", country=C, topic="life", mins=6,
 <p>An hour from Ponferrada, Villablino sits in a UNESCO Biosphere Reserve with homes around {F('price_villablino')}. City life and mountain life, a short drive apart.</p>
 <p><a href="/properties/">See our homes in León province</a>.</p>""",
   faq=[("Where is Ponferrada?", "In El Bierzo, León province, north-west Spain."),
-       ("What is Las Médulas?", F('medulas').capitalize() + "."),
-       ("How far is Ponferrada from Madrid by train?", F('pf_train').capitalize() + ".")],
+       ("What is Las Médulas?", Fc('medulas') + "."),
+       ("How far is Ponferrada from Madrid by train?", Fc('pf_train') + ".")],
   sources=src("pf_castle", "medulas", "pf_population", "pf_train", "price_villablino")),
 
 dict(slug="living-in-the-middle-of-europe", country=C, topic="life", img="town", mins=4,

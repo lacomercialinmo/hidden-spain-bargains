@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 from postlib import villablino, price_table, BASE_SOURCES, TOPICS
 
 C = "us"
@@ -18,7 +18,7 @@ dict(slug="moving-to-spain-from-the-us-2026", country=C, topic="visas", pillar=T
 {price_table([("United States (median existing home)", F('price_us')), ("Spain (average)", F('price_spain')), ("Villablino, León", F('price_villablino'))])}
 {villablino()}""",
   faq=[("Can Americans live in Spain?", "Yes, with a visa such as the digital nomad visa or the non-lucrative visa."),
-       ("How much income do I need for the Spanish digital nomad visa?", F('dnv_income').capitalize() + "."),
+       ("How much income do I need for the Spanish digital nomad visa?", Fc('dnv_income') + "."),
        ("Do Americans in Spain still file US taxes?", "Yes. US citizens file US returns wherever they live; a tax treaty helps avoid double taxation.")],
   sources=src("dnv_income", "nlv_income", "price_us") + BASE_SOURCES),
 
@@ -33,7 +33,7 @@ dict(slug="us-home-prices-vs-spain", country=C, topic="cost", img="town", mins=5
 <h2>What you trade</h2>
 <p>A big American house and a two-car commute, for a compact town where shops, the health centre and schools are close together, surrounded by mountains.</p>
 {villablino()}""",
-  faq=[("What is the median home price in the US?", F('price_us').capitalize() + "."),
+  faq=[("What is the median home price in the US?", Fc('price_us') + "."),
        ("What does a home cost in Villablino?", "Around " + F('price_villablino') + ".")],
   sources=src("price_us", "itp_cyl") + BASE_SOURCES),
 
@@ -52,7 +52,7 @@ dict(slug="remote-work-in-spain-on-us-income", country=C, topic="work", img="nat
 <p>Villablino has fibre in town plus 4G and 5G coverage.</p>
 {villablino()}""",
   faq=[("Can I work for a US company while living in Spain?", "Yes, with the digital nomad visa, if most of your income comes from outside Spain."),
-       ("What income do I need?", F('dnv_income').capitalize() + ".")],
+       ("What income do I need?", Fc('dnv_income') + ".")],
   sources=src("dnv_income") + BASE_SOURCES),
 
 dict(slug="early-retirement-in-spain-for-americans", country=C, topic="retire", img="heritage", mins=6,

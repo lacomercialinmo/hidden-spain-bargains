@@ -1,4 +1,4 @@
-from facts import F, src
+from facts import F, Fc, src
 
 POSTS = [
 dict(
@@ -62,8 +62,8 @@ dict(
 <h2>4. When you sell</h2>
 <p>If you sell while you are a non-resident, {F('sale_withholding')}. It is an advance payment towards your capital gains tax, and you can claim back any excess. The seller also usually pays the municipal plusvalía tax.</p>
 """,
-  faq=[("What is the transfer tax in Castile and León?", F("itp_cyl").capitalize() + " for resale homes, with reduced rates for some main-home buyers."),
-       ("Do non-residents pay tax on a home they don't rent out?", "Yes. " + F("irnr_imputed").capitalize() + ", filed on Modelo 210."),
+  faq=[("What is the transfer tax in Castile and León?", Fc("itp_cyl") + " for resale homes, with reduced rates for some main-home buyers."),
+       ("Do non-residents pay tax on a home they don't rent out?", "Yes. " + Fc("irnr_imputed") + ", filed on Modelo 210."),
        ("What happens when a non-resident sells?", "The buyer withholds 3% of the price and pays it to the Spanish tax office as an advance on the seller's capital gains tax.")],
   sources=src("itp_cyl", "irnr_imputed", "sale_withholding"),
 ),
@@ -86,8 +86,8 @@ dict(
 <h2>What about the golden visa?</h2>
 <p>Spain closed its investor residence route (the "golden visa") for property purchases in 2025, so buying a home no longer gives you residence by itself.</p>
 """,
-  faq=[("How much income do I need for the Spanish digital nomad visa?", F("dnv_income").capitalize() + "."),
-       ("How much do I need for the non-lucrative visa?", F("nlv_income").capitalize() + "."),
+  faq=[("How much income do I need for the Spanish digital nomad visa?", Fc("dnv_income") + "."),
+       ("How much do I need for the non-lucrative visa?", Fc("nlv_income") + "."),
        ("Does buying a property in Spain give me residency?", "No. You need a visa such as the digital nomad or non-lucrative visa if you are not an EU citizen.")],
   sources=src("dnv_income", "nlv_income", "whv", "uk_90_180"),
 ),
