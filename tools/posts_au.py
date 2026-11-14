@@ -57,7 +57,7 @@ dict(slug="ponferrada-templar-city-of-history", country=C, topic="life", mins=6,
   kicker=TOPICS["life"], title="Ponferrada: A Templar City for Australians Who Love History",
   h1="Ponferrada: a Templar city for people who love history",
   desc="A Templar castle, the Camino de Santiago, Roman gold mines and a wine valley: why Ponferrada, in north-west Spain, wins over visitors from far away.",
-  lead=f"Some places have stories older than whole countries. In Ponferrada, {F('pf_castle')}. Pilgrims on the Camino de Santiago still walk past its walls.",
+  lead=f"Some places have stories older than whole countries. In Ponferrada, the Knights Templar built one of Spain's great castles. Pilgrims on the Camino de Santiago still walk past its walls.",
   body=f"""<h2>A castle that is the city's heart</h2>
 <p>Ponferrada's castle is one of the great fortresses of north-west Spain. {Fc('pf_castle')}. You don't visit it once; you walk past it on your way to buy bread.</p>
 <h2>Roman gold and a wine valley</h2>

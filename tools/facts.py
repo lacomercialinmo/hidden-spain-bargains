@@ -13,7 +13,7 @@ FACTS = {
                     url="https://taxdown.es/informacion-impuestos/itp-castilla-leon", checked="2026-11-14", volatile=True),
     "itp_cyl_rural_young": dict(text="0.01% for buyers under 36 buying their first main home for under €150,000 in a municipality of up to 10,000 people (income limits apply)",
                     src="ITP Castilla y León 2026 – TaxDown", url="https://taxdown.es/informacion-impuestos/itp-castilla-leon", checked="2026-11-14", volatile=True),
-    "itp_cyl_reduced": dict(text="4% for some main-home buyers (under 36, large families, disability of 65% or more, protected housing), with income limits",
+    "itp_cyl_reduced": dict(text="4% for buyers under 36, large families, people with a disability of 65% or more and buyers of protected housing, with income limits",
                     src="ITP Castilla y León 2026 – TaxDown", url="https://taxdown.es/informacion-impuestos/itp-castilla-leon", checked="2026-11-14", volatile=True),
     # --- Owning as a non-resident ---
     "irnr_imputed": dict(text="1.1% of the cadastral value (2% if it has not been revised in the last ten years), taxed at 19% for EU/EEA residents or 24% for everyone else",
@@ -23,11 +23,11 @@ FACTS = {
     "sale_withholding": dict(text="the buyer withholds 3% of the price and pays it to the tax office (Modelo 211)", src="Non-Resident Tax in Spain 2026 – Pellicer & Heredia",
                     url="https://www.pellicerheredia.com/en/non-resident-tax-spain/", checked="2026-11-14", volatile=True),
     # --- Visas ---
-    "dnv_income": dict(text="€2,849 a month for a single applicant in 2026 (200% of the Spanish minimum wage), with no more than 20% of work for Spanish clients",
+    "dnv_income": dict(text="an income of €2,849 a month for a single applicant in 2026, which is 200% of the Spanish minimum wage, and no more than 20% of the work for Spanish clients",
                     src="Digital Nomad Visa income 2026 – Migratiolex", url="https://migratiolex.com/spain-digital-nomad-visa-minimum-income-requirement-for-2026/", checked="2026-11-14", volatile=True),
-    "nlv_income": dict(text="€28,800 a year for the main applicant in 2026 (400% of IPREM), plus €7,200 for each family member; no work allowed in Spain",
+    "nlv_income": dict(text="€28,800 a year for the main applicant in 2026, which is 400% of the IPREM index, plus €7,200 for each family member, and you cannot work in Spain",
                     src="Non-Lucrative Visa 2026 – Pellicer & Heredia", url="https://www.pellicerheredia.com/residencia-no-lucrativa-espa%c3%b1a/", checked="2026-11-14", volatile=True),
-    "whv": dict(text="up to 12 months for citizens of Australia and New Zealand aged 18–30 and Canada aged 18–35",
+    "whv": dict(text="up to 12 months of living and working in Spain (ages 18–30 for Australians and New Zealanders, 18–35 for Canadians)",
                     src="Working Holiday Visa Spain – Immigration Lawyers Spain", url="https://www.immigrationspain.es/en/working-holiday-visa-spain/", checked="2026-11-14", volatile=True),
     "uk_90_180": dict(text="UK passport holders can stay up to 90 days in any 180-day period in the Schengen area without a visa",
                     src="Brexit and Spain 2026 – CostaLuz Lawyers", url="https://www.costaluzlawyers.com/brexit-spain-guide-british-nationals/", checked="2026-11-14", volatile=True),
@@ -50,7 +50,7 @@ FACTS = {
     "vb_altitude": dict(text="1,015 m", src="AEMET – Villablino", url="https://www.aemet.es/en/eltiempo/prediccion/municipios/villablino-id24202", checked="2026-11-14", volatile=False),
     # --- Ponferrada / El Bierzo ---
     "pf_population": dict(text="63,186 residents (INE, 2024)", src="Diario de León", url="https://www.diariodeleon.es/sociedad/251212/2069126/municipios-grandes-impulsan-poblacion-leon.html", checked="2026-11-14", volatile=False),
-    "pf_castle": dict(text="the Templar knights held Ponferrada until 1312; the castle covers about 8,000 m²", src="Turismo Castilla y León / TerraNostrum", url="https://www.turismocastillayleon.com/es/arte-cultura-patrimonio/castillos/castillo-ponferrada", checked="2026-11-14", volatile=False),
+    "pf_castle": dict(text="the Knights Templar held the town until 1312, and the castle covers about 8,000 m²", src="Turismo Castilla y León / TerraNostrum", url="https://www.turismocastillayleon.com/es/arte-cultura-patrimonio/castillos/castillo-ponferrada", checked="2026-11-14", volatile=False),
     "pf_train": dict(text="direct trains to Madrid take around four hours", src="Railclick – Madrid to Ponferrada", url="https://railclick.com/es/train/madrid/ponferrada", checked="2026-11-14", volatile=True),
     "medulas": dict(text="UNESCO World Heritage Site since 1997 and the largest open-pit gold mine of the Roman Empire, about 25 km south-west of Ponferrada", src="Wikipedia / UNESCO", url="https://en.wikipedia.org/wiki/Las_M%C3%A9dulas", checked="2026-11-14", volatile=False),
     "somiedo": dict(text="an Asturian natural park and Biosphere Reserve (since 2000) of 283 km², a stronghold of the Cantabrian brown bear, with guided bear-watching trips", src="Turismo Asturias", url="https://www.turismoasturias.es/en/descubre/naturaleza/reservas-de-la-biosfera/parque-natural-de-somiedo", checked="2026-11-14", volatile=False),

@@ -38,7 +38,7 @@ dict(slug="working-holiday-visa-spain-for-new-zealanders", country=C, topic="vis
   desc="Kiwis aged 18 to 30 can live and work in Spain for up to a year. How the scheme works and how to use your OE to find a place to come back to.",
   lead=f"The OE is a Kiwi tradition. Spain's version gives New Zealanders {F('whv')}.",
   body=f"""<h2>The basics</h2>
-<p>{Fc('whv')}. You apply through the Spanish consulate and show savings and insurance.</p>
+<p>The scheme gives {F('whv')}. You apply through the Spanish consulate and show savings and insurance.</p>
 <h2>Beyond London</h2>
 <p>Most Kiwis do their OE in London. Spain offers a different year: lower costs, sun, mountains and a language that opens up a whole continent.</p>
 <h2>Staying on</h2>

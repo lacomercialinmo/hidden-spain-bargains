@@ -4,7 +4,7 @@ import glob, html, importlib.util, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from postlib import TOPICS
 from sitedata import BASE, PROVINCES, PROPERTIES, nav_html, NAV_HEAD, NAV_JS, card_html, prop_url, prov_name
-import facts
+import facts, proofcheck
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -289,6 +289,7 @@ def main():
             L += ["", f"## {name}"] + [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in ps]
     L += ["", "## Contact", "- Agency: La Comercial Inmobiliaria", "- WhatsApp / phone: +34 641 18 89 59", "- Web: https://lacomercial.app.link"]
     write("llms.txt", "\n".join(L) + "\n")
+    proofcheck.run(strict=True)
     print(f"built: {len(guides)} articles, {len(buyers)} buyers-guide pages, {len(PROPERTIES)} properties")
 
 if __name__ == "__main__":

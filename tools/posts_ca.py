@@ -26,18 +26,18 @@ dict(slug="from-toronto-to-castellon", country=C, topic="cost", mins=6,
   kicker=TOPICS["cost"], title="From Toronto to Castellón: Trading Stress for the Sea",
   h1="From Toronto to Castellón: trading stress for the Mediterranean",
   desc="A Toronto home averages over C$1 million. On Spain's Castellón coast, homes average about €1,450/m², with mild winters and warm seas.",
-  lead=f"You work hard, you pay a fortune and you still feel you're running to stand still. The average home in the Greater Toronto Area sells for {F('price_toronto')}. On the Mediterranean coast of Castellón, the average asking price is {F('cs_price_prov')}.",
+  lead=f"You work hard, you pay a fortune and you still feel you're running to stand still. The average home in the Greater Toronto Area sells for {F('price_toronto')}. On the Mediterranean coast of Castellón, homes average {F('cs_price_prov')}.",
   body=f"""<h2>A different kind of rich</h2>
 <p>Some of the happiest people we know left big, expensive cities for smaller places where life is slower. Castellón is that kind of place: a Mediterranean province between Valencia and Barcelona, with beaches, orange groves, mountain villages inland and a calm provincial capital.</p>
 <h2>The numbers</h2>
-{price_table([("Greater Toronto Area (average)", F('price_toronto')), ("Castellón province (asking, per m²)", F('cs_price_prov').split(', the lowest')[0]), ("Castellón city (per m²)", F('cs_price_city'))])}
+{price_table([("Greater Toronto Area (average)", F('price_toronto')), ("Castellón province (per m²)", F('cs_price_prov').split(', the lowest')[0]), ("Castellón city (per m²)", F('cs_price_city'))])}
 <h2>The weather you've been dreaming of in February</h2>
 <p>Castellón has {F('cs_climate')}. No snow shovelling, no ice on the windscreen.</p>
 <h2>How to get there legally</h2>
 <p>Under 36? The working holiday visa gives you {F('whv')}. Otherwise, remote workers use the digital nomad visa ({F('dnv_income')}) and savers the non-lucrative visa. <a href="/buyers-guide/visas-to-live-in-spain.html">See all visas</a>.</p>
 <h2>We are starting to look in Castellón</h2>
 <p>Castellón is the next province we are opening. <a href="/properties/#request">Tell us what you want</a> and we will search there for you, or start with the mountain homes we already have in León.</p>""",
-  faq=[("Is Castellón cheaper than Valencia and Alicante?", "Yes. Castellón had an average asking price of " + F('cs_price_prov') + "."),
+  faq=[("Is Castellón cheaper than Valencia and Alicante?", "Yes. Castellón homes averaged " + F('cs_price_prov') + "."),
        ("What is the weather like in Castellón?", Fc('cs_climate') + ".")],
   sources=src("price_toronto", "cs_price_prov", "cs_price_city", "cs_climate", "whv", "dnv_income")),
 
