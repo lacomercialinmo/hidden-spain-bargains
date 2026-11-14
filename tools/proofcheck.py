@@ -20,6 +20,7 @@ SOFT = [
 def text_of(path):
     s = open(path, encoding="utf-8").read()
     s = re.sub(r"<script.*?</script>|<style.*?</style>", " ", s, flags=re.S)
+    s = re.sub(r"</(em|i|b|strong|a)>(?=[,.;:!?])", "", s)  # inline tag closing right before punctuation
     s = re.sub(r"</?(h[1-6]|p|li|td|th|tr|div|summary|details|figcaption|option|span|b|em|a|label|button|section|header|footer|nav|ul|ol|table|select|i)\b[^>]*>", " ¶ ", s)
     s = re.sub(r"<[^>]+>", " ", s)
     return re.sub(r"\s+", " ", html.unescape(s))

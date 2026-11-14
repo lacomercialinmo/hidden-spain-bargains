@@ -296,7 +296,7 @@ def homepage(guides):
         f'<div class="topics">{topics}</div><div class="cards">{"".join(gcard(g) for g in latest)}</div><p style="margin-top:18px"><a href="/guides/">All articles →</a></p></div></section>'
         '<section class="hsec"><div class="wrap who"><div><div class="kicker">Area guide</div><h2>Villablino and the Laciana Valley</h2>'
         f'<p>A mountain town in a UNESCO Biosphere Reserve, with fibre internet, a health centre, schools and two airports within reach. Homes cost around {facts.F("price_villablino")}.</p>'
-        '<p><a class="btn" href="/areas/villablino/">Read the area guide</a></p></div><img src="/img/villablino-nature.jpg" alt="Autumn forests and mountains in the Laciana Valley" loading="lazy"></div></section>'
+        '<p><a class="btn" href="/areas/villablino/">Read the area guide</a> <a class="btn ghost" href="/areas/">More hidden places</a></p></div><img src="/img/villablino-nature.jpg" alt="Autumn forests and mountains in the Laciana Valley" loading="lazy"></div></section>'
         '<section class="hsec" id="contact"><div class="wrap"><div class="kicker">Contact</div><h2>Tell us about the home you want</h2><p>We answer in English, usually within 24 hours.</p>'
         '<form class="cform" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company"><input type="hidden" name="form-name" value="contact"><p style="display:none"><label>Company <input name="company"></label></p>'
         '<input name="name" placeholder="Name" aria-label="Name" required><input type="email" name="email" placeholder="Email" aria-label="Email" required>'
@@ -356,13 +356,15 @@ def main():
     for pv in PROVINCES:
         if pv["active"]:
             write(f'properties/{pv["slug"]}/index.html', province_page(pv))
+    import areagen
+    area_urls = areagen.build(dict(e=e, BASE=BASE, head=head, footer=footer, cta=cta, write=write, UPDATED=UPDATED, UPDATED_TXT=UPDATED_TXT))
     write("index.html", homepage(guides))
     from legal import LEGAL_NOTICE, PRIVACY
     write("legal-notice.html", legal_page("legal-notice", "Legal notice", LEGAL_NOTICE))
     write("privacy.html", legal_page("privacy", "Privacy policy", PRIVACY))
     for rel in ["thanks.html", "areas/villablino/index.html"] + [prop_url(p)[1:] for p in PROPERTIES]:
         inject_nav(rel)
-    urls = ["/", "/areas/villablino/", "/properties/", "/guides/"] + [f'/properties/{pv["slug"]}/' for pv in PROVINCES if pv["active"]] + [prop_url(p) for p in PROPERTIES] + [p["url"] for p in buyers + guides]
+    urls = ["/", "/areas/villablino/"] + area_urls + ["/properties/", "/guides/"] + [f'/properties/{pv["slug"]}/' for pv in PROVINCES if pv["active"]] + [prop_url(p) for p in PROPERTIES] + [p["url"] for p in buyers + guides]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           "".join(f"<url><loc>{BASE}{u}</loc><lastmod>{UPDATED}</lastmod></url>\n" for u in urls) + "</urlset>\n")
     bots = ["*", "GPTBot", "ChatGPT-User", "OAI-SearchBot", "ClaudeBot", "Claude-User", "Claude-SearchBot", "Google-Extended", "PerplexityBot", "Bingbot"]
@@ -371,7 +373,7 @@ def main():
          "> English-language property search and guides for people moving to Spain from the UK, US, Canada, Australia and New Zealand. Personal-shopper service: we select homes, research the area and negotiate the price; the buyer pays only if they buy.", "",
          "## Homes for sale"]
     L += [f'- [{p["title"]} — €{p["price"]:,}]({BASE}{prop_url(p)}): {p["m2"]} m², {p["beds"]} bedrooms, {p["baths"]} bathroom, {p["town"]} ({prov_name(p["province"])}). Ref {p["ref"]}.' for p in PROPERTIES]
-    L += ["", "## Area guide", f"- [Living in Villablino, Spain]({BASE}/areas/villablino/): UNESCO Laciana Valley, services, schools, distances to airports.", "", "## Buyers guide"]
+    L += ["", "## Area guide", f"- [Living in Villablino, Spain]({BASE}/areas/villablino/): UNESCO Laciana Valley, services, schools, distances to airports."] + areagen.llms(BASE) + ["", "## Buyers guide"]
     L += [f'- [{p["h1"]}]({BASE}{p["url"]}): {p["desc"]}' for p in buyers]
     for code, name in TOPICS.items():
         ps = [p for p in guides if p.get("topic") == code]
