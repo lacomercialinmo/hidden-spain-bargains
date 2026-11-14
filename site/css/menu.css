@@ -1,3 +1,4 @@
+.snav,.snav *{box-sizing:border-box}
 .snav{position:sticky;top:0;z-index:80;background:rgba(251,249,245,.97);backdrop-filter:blur(8px);border-bottom:1px solid #E4DDD3;font-family:'Jost',Helvetica,Arial,sans-serif}
 .snav .in{max-width:1140px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .snav .logo{font-family:'Fraunces',Georgia,serif;font-weight:800;font-size:22px;color:#1A1A1A;text-decoration:none;line-height:1;white-space:nowrap}
@@ -30,7 +31,7 @@
  .snav .sub{position:static;box-shadow:none;border:0;background:#F6F1EA;padding:4px 0}
  .snav .sub a{padding:11px 32px}
  .snav .sub .lab{padding:10px 32px 2px}
- .snav .menu .cta{margin:14px 20px 0;text-align:center!important;border-bottom:0}
+ .snav .menu>li>a.cta{width:auto;margin:16px 20px 0;justify-content:center;border-bottom:0}
  .snav.on .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
  .snav.on .burger span:nth-child(2){opacity:0}
  .snav.on .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
