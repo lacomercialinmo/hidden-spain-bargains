@@ -32,7 +32,8 @@ def figure(a, e):
     if not i:
         return ""
     lic = f'<a href="{e(i["licurl"])}" rel="nofollow noopener" target="_blank">{e(i["license"])}</a>' if i.get("licurl") else e(i["license"])
-    return (f'<figure class="cover"><img src="/img/areas/{a["slug"]}.jpg" alt="{e(a["name"])}, {e(a["prov"])}, Spain" width="1600" height="{i["h"]}">'
+    src = i.get("remote") or f'/img/areas/{a["slug"]}.jpg'
+    return (f'<figure class="cover"><img src="{e(src)}" alt="{e(a["name"])}, {e(a["prov"])}, Spain" width="{i.get("w") or 1600}" height="{i["h"]}">'
             f'<figcaption>{e(a["name"])}. Photo: {e(i["artist"] or "Wikimedia Commons contributor")}, {lic}, via '
             f'<a href="{e(i["page"])}" rel="nofollow noopener" target="_blank">Wikimedia Commons</a>.</figcaption></figure>')
 
@@ -54,7 +55,9 @@ def price_answer(a):
 
 
 def card(a, e):
-    th = f'<img src="/img/areas/{a["slug"]}-s.jpg" alt="{e(a["name"])}" loading="lazy">' if img_of(a) else ""
+    i = img_of(a)
+    tsrc = (i["remote"].replace("/1280px-", "/500px-") if i and i.get("remote") else f'/img/areas/{a["slug"]}-s.jpg')
+    th = f'<img src="{e(tsrc)}" alt="{e(a["name"])}" loading="lazy">' if i else ""
     return (f'<a class="acard" href="/areas/{a["slug"]}/">{th}<span>{e(a["prov"])}</span><b>{e(a["name"])}</b>'
             f'<em>Flats from about {eur(a["flat"])}/m²</em><p>{e(a["hook"])}</p></a>')
 
@@ -97,7 +100,8 @@ def page(a, others, B):
     srcs = [(f'RealAdvisor – house prices in {a["name"]}', a["url"]), ("RealAdvisor – house prices in Spain", AR.SPAIN_URL)]
     src_html = "".join(f'<li><a href="{u}" rel="nofollow noopener" target="_blank">{e(t)}</a></li>' for t, u in srcs)
     cards = "".join(card(o, e) for o in others)
-    og = '<meta property="og:type" content="article">' + (f'<meta property="og:image" content="{BASE}/img/areas/{a["slug"]}.jpg">' if img_of(a) else "")
+    ii = img_of(a)
+    og = '<meta property="og:type" content="article">' + (f'<meta property="og:image" content="{ii.get("remote") or BASE + "/img/areas/" + a["slug"] + ".jpg"}">' if ii else "")
     return (B["head"](title, desc, url, AREA_CSS + og + ldh) +
             f'<div class="wrap crumbs"><a href="/">Home</a> › <a href="/areas/">Area guides</a> › {e(a["name"])}</div>'
             f'<header class="head"><div class="kicker">{e(a["prov"])} · {e(a["region"])}</div><h1>Living in {e(a["name"])}</h1><p class="lead">{e(a["hook"])}</p>'
