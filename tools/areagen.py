@@ -2,6 +2,10 @@
 import json, re
 import facts
 import areas as AR
+try:
+    from area_extra import EXTRA
+except ImportError:
+    EXTRA = {}
 
 AREA_CSS = """<style>
 .pricebox{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);padding:18px 20px;margin:24px 0}
@@ -13,6 +17,11 @@ AREA_CSS = """<style>
 .acard:hover{border-color:var(--accent)}
 .acard img{width:calc(100% + 36px);margin:-18px -18px 12px;aspect-ratio:16/10;object-fit:cover;max-width:none}
 .acard b{font-family:var(--serif);font-size:22px;display:block}.acard span{font-size:13px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.xlist{list-style:none;padding:0}.xlist li{border-top:1px solid var(--line);padding:12px 0}.xlist li b{display:block;font-family:var(--serif);font-size:19px;margin-bottom:2px}
+.ttable{width:100%;border-collapse:collapse;font-size:16px;margin:10px 0 20px}.ttable th,.ttable td{border-top:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}.ttable th{width:30%;font-weight:600}
+.yt{position:relative;aspect-ratio:16/9;background:#000;margin:14px 0 6px;cursor:pointer}.yt img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.yt button{position:absolute;inset:0;margin:auto;width:72px;height:50px;border:0;border-radius:12px;background:#c00;color:#fff;font-size:22px;cursor:pointer}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.ytcap{font-size:14px;color:var(--muted);margin:0 0 18px}
 .acard em{display:block;font-style:normal;color:var(--accent);font-weight:600;margin:8px 0 6px}.acard p{font-size:15px;line-height:1.5;margin:0}
 </style>"""
 
@@ -62,11 +71,40 @@ def card(a, e):
             f'<em>Flats from about {eur(a["flat"])}/m²</em><p>{e(a["hook"])}</p></a>')
 
 
+def extra_html(a, X, e):
+    n = e(a["name"])
+    li = lambda items: '<ul class="xlist">' + "".join(f"<li><b>{t}</b>{x}</li>" for t, x in items) + "</ul>"
+    tb = lambda items: '<table class="ttable">' + "".join(f"<tr><th>{t}</th><td>{x}</td></tr>" for t, x in items) + "</table>"
+    h = (f'<h2>A short history</h2><p>{X["history"]}</p>'
+         f'<h2>Things to see and do in {n}</h2>{li(X["see"])}'
+         f'<h2>The main square and eating out</h2><p>{X["square"]}</p>{li(X["eat"])}'
+         '<p class="src">Restaurants and prices at the time of writing; opening days change, so check before you go.</p>'
+         f'<h2>The year in {n}</h2>{tb(X["calendar"])}'
+         f'<h2>Food and drink</h2><p>{X["food"]}</p>'
+         f'<h2>Nature and outdoors</h2><p>{X["outdoors"]}</p>'
+         f'<h2>Everyday life and services</h2><p>{X["services"]}</p>'
+         f'<h2>Getting around: trains, buses and roads</h2>{tb(X["transport"])}'
+         '<p class="src">Journey times, frequencies and fares are indicative and change with each timetable.</p>'
+         f'<h2>The property market in {n}</h2><p>{X["market"]}</p>'
+         f'<h3>What your budget buys</h3>{tb(X["budgets"])}'
+         f'<h2>Who {n} suits</h2><p>{a["suits"]}</p>'
+         '<h3>The honest downsides</h3><ul>' + "".join(f"<li>{d}</li>" for d in X["downsides"]) + '</ul>'
+         f'<h2>Day trips from {n}</h2>{li(X["nearby"])}')
+    if X.get("videos"):
+        h += f'<h2>{n} on video</h2>' + "".join(
+            f'<div class="yt" data-id="{v}" role="button" tabindex="0" aria-label="Play video: {e(t)}"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="{e(t)}" loading="lazy"><button aria-hidden="true">▶</button></div>'
+            f'<p class="ytcap">{e(t)} · <a href="https://www.youtube.com/watch?v={v}" rel="nofollow noopener" target="_blank">Watch on YouTube</a></p>' for v, t in X["videos"])
+        h += ('<script>document.querySelectorAll(".yt").forEach(function(d){function p(){d.innerHTML=\'<iframe src="https://www.youtube-nocookie.com/embed/\'+d.dataset.id+\'?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="YouTube video"></iframe>\';}'
+              'd.addEventListener("click",p);d.addEventListener("keydown",function(k){if(k.key==="Enter")p();});});</script>')
+    return h
+
+
 def page(a, others, B):
     e, BASE = B["e"], B["BASE"]
     url = f'{BASE}/areas/{a["slug"]}/'
     p = pct(a)
-    faq = [(q, ans if ans else price_answer(a)) for q, ans in a["faq"]]
+    X = EXTRA.get(a["slug"])
+    faq = [(q, ans if ans else price_answer(a)) for q, ans in (X["faq"] if X else a["faq"])]
     faq.append((f'Can you find me a home in {a["name"]}?',
                 f'Yes. Tell us your budget and what you need. We search {a["name"]} and the area around it, check each home, and negotiate the price for you. You pay only if you buy.'))
     title = f'Living in {a["name"]}, Spain: Prices & Life | Hidden Spain Bargains'
@@ -93,11 +131,12 @@ def page(a, others, B):
             f'<h2>Why {e(a["name"])} stands out</h2><ul>' + "".join(f"<li>{w}</li>" for w in a["why"]) + '</ul>'
             f'<h2>Homes and prices in {e(a["name"])}</h2><p>{price_answer(a)}</p>'
             '<p>These are averages. Homes that need work, or that have been on the market for a while, often sell well below them, and that is where our negotiation makes the difference.</p>'
+            + (extra_html(a, X, e) if X else
             f'<h2>Getting around</h2><p>{a["around"]}</p>'
             f'<h2>Everyday life</h2><p>{a["life"]}</p>'
-            f'<h2>Who {e(a["name"])} suits</h2><p>{a["suits"]}</p>')
+            f'<h2>Who {e(a["name"])} suits</h2><p>{a["suits"]}</p>'))
     faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{x}</p></details>" for q, x in faq)
-    srcs = [(f'RealAdvisor – house prices in {a["name"]}', a["url"]), ("RealAdvisor – house prices in Spain", AR.SPAIN_URL)]
+    srcs = (X.get("sources", []) if X else []) + [(f'RealAdvisor – house prices in {a["name"]}', a["url"]), ("RealAdvisor – house prices in Spain", AR.SPAIN_URL)]
     src_html = "".join(f'<li><a href="{u}" rel="nofollow noopener" target="_blank">{e(t)}</a></li>' for t, u in srcs)
     cards = "".join(card(o, e) for o in others)
     ii = img_of(a)
