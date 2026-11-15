@@ -243,8 +243,9 @@ HOME_CSS = """<style>
 .hhero .mosaic span{position:absolute;top:10px;left:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.45);padding:3px 8px;color:#fff;z-index:2}
 .hhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 15%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.82) 100%);pointer-events:none}
 .hhero .wrap{pointer-events:none}.hhero .wrap a{pointer-events:auto}
-.photocred{font-size:12px;color:var(--muted);padding:6px 0 0}.photocred a{color:var(--muted)}
-@media(max-width:800px){.hhero .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr)}}
+.hhero .mosaic a:nth-child(n+4) span{display:none}
+.photocred{font-size:12px;color:var(--muted);padding-top:6px;padding-bottom:4px}.photocred a{color:var(--muted)}
+@media(max-width:800px){.hhero .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr)}.hhero .mosaic a:nth-child(n+3) span{display:none}}
 .hhero .wrap{position:relative;z-index:2;padding-bottom:60px;width:100%}
 .hhero h1{font-family:var(--serif);font-weight:800;font-size:clamp(36px,6vw,74px);line-height:1.03;margin:10px 0 14px;max-width:900px;text-shadow:0 3px 18px rgba(0,0,0,.35)}
 .hhero p{font-size:20px;max-width:640px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
