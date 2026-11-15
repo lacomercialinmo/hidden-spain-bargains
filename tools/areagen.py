@@ -11,9 +11,30 @@ AREA_CSS = """<style>
 .agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;margin:16px 0 40px}
 .acard{display:block;background:#fff;border:1px solid var(--line);padding:18px;text-decoration:none;color:var(--ink)}
 .acard:hover{border-color:var(--accent)}
+.acard img{width:calc(100% + 36px);margin:-18px -18px 12px;aspect-ratio:16/10;object-fit:cover;max-width:none}
 .acard b{font-family:var(--serif);font-size:22px;display:block}.acard span{font-size:13px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
 .acard em{display:block;font-style:normal;color:var(--accent);font-weight:600;margin:8px 0 6px}.acard p{font-size:15px;line-height:1.5;margin:0}
 </style>"""
+
+
+import os
+_IMGS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "area_images.json")
+IMGS = json.load(open(_IMGS_PATH, encoding="utf-8")) if os.path.exists(_IMGS_PATH) else {}
+
+
+def img_of(a):
+    i = IMGS.get(a["slug"])
+    return i if i and i.get("ok") else None
+
+
+def figure(a, e):
+    i = img_of(a)
+    if not i:
+        return ""
+    lic = f'<a href="{e(i["licurl"])}" rel="nofollow noopener" target="_blank">{e(i["license"])}</a>' if i.get("licurl") else e(i["license"])
+    return (f'<figure class="cover"><img src="/img/areas/{a["slug"]}.jpg" alt="{e(a["name"])}, {e(a["prov"])}, Spain" width="1600" height="{i["h"]}">'
+            f'<figcaption>{e(a["name"])}. Photo: {e(i["artist"] or "Wikimedia Commons contributor")}, {lic}, via '
+            f'<a href="{e(i["page"])}" rel="nofollow noopener" target="_blank">Wikimedia Commons</a>.</figcaption></figure>')
 
 
 def eur(n):
@@ -33,7 +54,8 @@ def price_answer(a):
 
 
 def card(a, e):
-    return (f'<a class="acard" href="/areas/{a["slug"]}/"><span>{e(a["prov"])}</span><b>{e(a["name"])}</b>'
+    th = f'<img src="/img/areas/{a["slug"]}-s.jpg" alt="{e(a["name"])}" loading="lazy">' if img_of(a) else ""
+    return (f'<a class="acard" href="/areas/{a["slug"]}/">{th}<span>{e(a["prov"])}</span><b>{e(a["name"])}</b>'
             f'<em>Flats from about {eur(a["flat"])}/m²</em><p>{e(a["hook"])}</p></a>')
 
 
@@ -75,11 +97,12 @@ def page(a, others, B):
     srcs = [(f'RealAdvisor – house prices in {a["name"]}', a["url"]), ("RealAdvisor – house prices in Spain", AR.SPAIN_URL)]
     src_html = "".join(f'<li><a href="{u}" rel="nofollow noopener" target="_blank">{e(t)}</a></li>' for t, u in srcs)
     cards = "".join(card(o, e) for o in others)
-    return (B["head"](title, desc, url, AREA_CSS + '<meta property="og:type" content="article">' + ldh) +
+    og = '<meta property="og:type" content="article">' + (f'<meta property="og:image" content="{BASE}/img/areas/{a["slug"]}.jpg">' if img_of(a) else "")
+    return (B["head"](title, desc, url, AREA_CSS + og + ldh) +
             f'<div class="wrap crumbs"><a href="/">Home</a> › <a href="/areas/">Area guides</a> › {e(a["name"])}</div>'
             f'<header class="head"><div class="kicker">{e(a["prov"])} · {e(a["region"])}</div><h1>Living in {e(a["name"])}</h1><p class="lead">{e(a["hook"])}</p>'
             f'<div class="tagrow">{"".join("<i>" + e(t) + "</i>" for t in a["tags"])}</div>'
-            f'<p class="meta">By La Comercial Inmobiliaria · Prices checked {B["UPDATED_TXT"]}</p></header>'
+            f'<p class="meta">By La Comercial Inmobiliaria · Prices checked {B["UPDATED_TXT"]}</p></header>{figure(a, e)}'
             f'<article class="body">{body}{B["cta"]("", a["name"])}<h2>Frequently asked questions</h2>{faq_html}<h2>Sources</h2><ul class="src">{src_html}</ul>'
             '<p class="src">Prices are modelled averages that change every month. We re-check them regularly; ask us for real, current homes.</p></article>'
             f'<section class="related"><div class="wrap"><h2>More hidden places nearby</h2><div class="agrid">{cards}</div><p><a href="/areas/">All area guides →</a></p></div></section>'
@@ -89,7 +112,7 @@ def page(a, others, B):
 def index(B):
     e, BASE = B["e"], B["BASE"]
     url = BASE + "/areas/"
-    vb_card = ('<a class="acard" href="/areas/villablino/"><span>León</span><b>Villablino &amp; Laciana Valley</b>'
+    vb_card = ('<a class="acard" href="/areas/villablino/"><img src="/img/villablino-town.jpg" alt="Villablino" loading="lazy"><span>León</span><b>Villablino &amp; Laciana Valley</b>'
                f'<em>Homes around {e(facts.F("price_villablino"))}</em><p>A mountain town in a UNESCO Biosphere Reserve, with fibre internet and some of the lowest home prices in Spain.</p></a>')
     blocks = []
     for code, label in AR.GROUPS:

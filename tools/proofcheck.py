@@ -37,7 +37,7 @@ def run(strict=True):
         for rx, label in HARD:
             for m in re.finditer(rx, t):
                 ctx = t[max(0, m.start() - 30): m.end() + 30]
-                if label == "lowercase after full stop" and re.search(r"(e\.g|i\.e|approx|vs|m²|No|Min|Max)\. [a-z€]", ctx):
+                if label == "lowercase after full stop" and re.search(r"(e\.g|i\.e|approx|vs|m²|No|Min|Max|Fdez|Sr|Dr|St)\. [a-z€]", ctx):
                     continue
                 hard.append(f"{rel}: {label}: …{ctx}…")
         for rx, label in SOFT:
