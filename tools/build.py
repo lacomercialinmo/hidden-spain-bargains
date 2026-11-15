@@ -63,8 +63,12 @@ def cta(who="", place=""):
             f'<div class="btns"><a class="btn" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20{who_txt}interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a>'
             '<a class="btn ghost" href="/properties/">See properties</a></div></div>')
 
+from article_images import ART_IMG
+
 def gcard(p):
-    if p.get("img"):
+    if p.get("slug") in ART_IMG:
+        pic = f'<img src="/img/articles/{p["slug"]}-s.jpg" alt="{e(ART_IMG[p["slug"]])}" loading="lazy">'
+    elif p.get("img"):
         pic = f'<img src="/img/villablino-{p["img"]}.jpg" alt="{e(IMG_ALT[p["img"]])}" loading="lazy">'
     else:
         pic = f'<div class="ph">{e(TOPICS.get(p.get("topic"), "Buyers guide"))}</div>'
@@ -75,7 +79,10 @@ def article(p, related, section, section_url, who):
     faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{a}</p></details>" for q, a in p["faq"])
     src_html = "".join(f'<li><a href="{u}" rel="nofollow noopener" target="_blank">{e(t)}</a></li>' for t, u in p["sources"])
     cover = ""
-    if p.get("img"):
+    if p.get("slug") in ART_IMG:
+        cover = (f'<figure class="cover"><img src="/img/articles/{p["slug"]}.jpg" alt="{e(ART_IMG[p["slug"]])}" fetchpriority="high">'
+                 f'<figcaption>{e(ART_IMG[p["slug"]])}. AI-generated illustration.</figcaption></figure>')
+    elif p.get("img"):
         cover = (f'<figure class="cover"><img src="/img/villablino-{p["img"]}.jpg" alt="{e(IMG_ALT[p["img"]])}" fetchpriority="high">'
                  f'<figcaption>{e(IMG_ALT[p["img"]])}.</figcaption></figure>')
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -84,14 +91,16 @@ def article(p, related, section, section_url, who):
               "datePublished": UPDATED, "dateModified": UPDATED, "mainEntityOfPage": url,
               "author": {"@type": "Organization", "name": "La Comercial Inmobiliaria"},
               "publisher": {"@type": "Organization", "name": "Hidden Spain Bargains by La Comercial Inmobiliaria"}}
-    if p.get("img"):
+    if p.get("slug") in ART_IMG:
+        art_ld["image"] = f'{BASE}/img/articles/{p["slug"]}.jpg'
+    elif p.get("img"):
         art_ld["image"] = f'{BASE}/img/villablino-{p["img"]}.jpg'
     crumbs_ld = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
         {"@type": "ListItem", "position": 2, "name": section, "item": BASE + section_url},
         {"@type": "ListItem", "position": 3, "name": p["h1"], "item": url}]}
     ld = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (art_ld, faq_ld, crumbs_ld))
-    og = '<meta property="og:type" content="article">' + (f'<meta property="og:image" content="{BASE}/img/villablino-{p["img"]}.jpg">' if p.get("img") else "")
+    og = '<meta property="og:type" content="article">' + (f'<meta property="og:image" content="{BASE}/img/articles/{p["slug"]}.jpg">' if p.get("slug") in ART_IMG else f'<meta property="og:image" content="{BASE}/img/villablino-{p["img"]}.jpg">' if p.get("img") else "")
     return (head(p["title"], p["desc"], url, og + ld) +
             f'<div class="wrap crumbs"><a href="/">Home</a> › <a href="{section_url}">{e(section)}</a></div>'
             f'<header class="head"><div class="kicker">{e(p["kicker"])}</div><h1>{e(p["h1"])}</h1><p class="lead">{p["lead"]}</p>'
