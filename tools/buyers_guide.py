@@ -39,7 +39,7 @@ dict(
   desc="The taxes you pay to buy, own and sell a home in Spain as a foreigner in 2026: transfer tax in Castile and León, non-resident tax, IBI and the 3% withholding.",
   lead="When you buy a resale home in Castile and León you pay a transfer tax of " + F("itp_cyl") + ", plus notary and land registry fees. After that, owners pay a yearly local tax, and non-residents also file a yearly income tax return.",
   body=f"""
-<div class="box"><p><b>Quick answer:</b> budget the price of the home plus roughly 10% for taxes and fees when you buy. In Castile and León, where Villablino is, most of that is the transfer tax (ITP) of {F('itp_cyl')}.</p></div>
+<div class="box"><p><b>Quick answer:</b> budget the price of the home plus roughly 10% for taxes and fees when you buy. In Castile and León, where Villablino is, most of that is the transfer tax (ITP) of {F('itp_cyl')}. <a href="/buyers-guide/purchase-cost-calculator.html">Work out your total in pounds, dollars or euros with our calculator</a>.</p></div>
 <h2>1. Taxes and costs when you buy</h2>
 <h3>Transfer tax (ITP) on resale homes</h3>
 <p>Almost every home we show is a resale home, so you pay the Impuesto de Transmisiones Patrimoniales (ITP). The rate is set by each region. In Castile and León it is {F('itp_cyl')}.</p>

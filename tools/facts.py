@@ -8,6 +8,20 @@ import datetime
 MAX_AGE_DAYS = 45
 
 FACTS = {
+    # --- Transfer tax (ITP) on resale homes by region, general rate for homes under €250,000 (checked 2026-11-16) ---
+    "itp_madrid": dict(text="6%", src="ITP Madrid 2026 – guiafiscal.es", url="https://guiafiscal.es/patrimonio/itp/madrid/", checked="2026-11-16", volatile=True),
+    "itp_andalucia": dict(text="7%", src="ITP Andalucía 2026 – guiafiscal.es", url="https://guiafiscal.es/patrimonio/itp/andalucia/", checked="2026-11-16", volatile=True),
+    "itp_regions": dict(text="from 6% in the Madrid region to 9% in Castilla-La Mancha and the Valencia region", src="ITP by region 2026 – guiafiscal.es", url="https://guiafiscal.es/patrimonio/itp/", checked="2026-11-16", volatile=True),
+    "itp_valencia": dict(text="9% (since 1 June 2026)", src="ITP Comunitat Valenciana – TaxDown", url="https://taxdown.es/informacion-impuestos/itp-comunidad-valenciana", checked="2026-11-16", volatile=True),
+    "notary_registry": dict(text="usually about €600 to €1,500 together, depending on the price", src="Impuestos y gastos al comprar vivienda 2026 – Gibobs", url="https://www.gibobs.com/blog/sabes_impuestos_comprar_vivienda/", checked="2026-11-16", volatile=True),
+    "ecb_rates": dict(text="13 November 2026", src="European Central Bank – euro reference rates", url="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html", checked="2026-11-16", volatile=True),
+    # --- Direct trains to Madrid (timetable aggregators, checked 2026-11-16) ---
+    "train_puertollano": dict(text="about 1 h 10 min to 1 h 20 min by high-speed train, with more than 15 direct trains a day", src="Puertollano–Madrid trains – Omio", url="https://www.omio.es/trenes/puertollano", checked="2026-11-16", volatile=True),
+    "train_medina": dict(text="about 55 minutes on the fastest direct trains to Madrid Chamartín", src="Medina del Campo–Madrid Chamartín trains – Omio", url="https://www.omio.es/trenes/medina-del-campo/madrid-chamartin-zufsv", checked="2026-11-16", volatile=True),
+    "train_arevalo": dict(text="about 2 hours on direct regional trains to Madrid Príncipe Pío, around 7 a day", src="Arévalo–Madrid trains – Omio", url="https://www.omio.es/trenes/arevalo/madrid-dy63u", checked="2026-11-16", volatile=True),
+    "train_linares": dict(text="about 3 hours to Madrid Atocha, with around 5 direct trains a day from Linares-Baeza station, about 10 km from town", src="Linares–Madrid trains – Omio", url="https://www.omio.es/trenes/linares/madrid", checked="2026-11-16", volatile=True),
+    "train_ponferrada": dict(text="one direct train a day to Madrid Chamartín, taking about 4 hours, which also stops at Bembibre and Astorga", src="Madrid–Ponferrada trains – Omio; Diario de León", url="https://www.omio.es/trenes/madrid/ponferrada", checked="2026-11-16", volatile=True),
+
     # --- Buying taxes, Castile and León ---
     "itp_cyl": dict(text="8% (10% on the part of the price above €250,000)", src="ITP Castilla y León 2026 – TaxDown",
                     url="https://taxdown.es/informacion-impuestos/itp-castilla-leon", checked="2026-11-14", volatile=True),
