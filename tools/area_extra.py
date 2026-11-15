@@ -109,4 +109,92 @@ EXTRA = {
              ("Indomio – Valladolid province market", "https://www.indomio.es/mercado-inmobiliario/castilla-y-leon/valladolid-provincia/"),
              ("RealAdvisor – Medina del Campo villages (47492)", "https://realadvisor.es/es/precios-viviendas/47492-medina-del-campo")],
 ),
+"medina-de-rioseco": dict(
+    history=("Medina de Rioseco is called the City of the Admirals: from the 15th century it belonged to the Enríquez family, Admirals of Castile, and its merchants grew rich enough to fill a town of a few thousand people with four huge churches. "
+             "In the 18th century it became the end of the Canal de Castilla, the great engineering project of the Spanish Enlightenment, built to carry the wheat of Tierra de Campos towards the sea. "
+             "In 1808 a battle of the Peninsular War was fought here; the French victory opened the road to Madrid for Joseph Bonaparte. The old town has been a protected historic ensemble since 1965. "
+             "About 4,600 people live here today, and around 4,300 of them belong to one of its Holy Week brotherhoods."),
+    see=[
+        ("Rúa Mayor", "The backbone of the old town: a long street lined with wooden porticoes held up by stone and timber columns, with traditional family shops, bakeries and bars underneath. It is the best place to start, and the stage of the Holy Week processions."),
+        ("Santa María de Mediavilla", "The largest of the 'four cathedrals', a late Gothic church with Renaissance spirit. Inside, the Benavente chapel is one of the jewels of the Spanish Renaissance, with work by Juan de Juni."),
+        ("Santiago and Santa Cruz", "Santiago is the other great hall church of the town. Santa Cruz, a 16th-century church on the Rúa Mayor with a sober Herrerian façade, is now the Holy Week Museum, where you can see the processional floats up close all year."),
+        ("Museo de San Francisco", "A former convent turned museum, with terracotta sculptures by Juan de Juni and an outstanding collection of 17th-century Hispano-Filipino ivories."),
+        ("Capilla de los Pasos Grandes", "The museum that keeps the two giant floats of the Crucifixion and the Descent from the Cross, known in town as 'El Longinos' and 'La Escalera'."),
+        ("Canal de Castilla dock", "Medina de Rioseco is where the Campos branch of the canal ends, in a large dock surrounded by old warehouses. Walk or cycle the towpath, and take the tourist boat 'Antonio de Ulloa', which runs along the canal between the dock and the sixth lock near Tamariz de Campos."),
+        ("San Antonio flour mill", "Beside the dock, a 19th-century flour mill turned museum, with its turbines and machinery: a real witness of the industrial revolution the canal brought to the area."),
+        ("Teatro Principal and El Torno", "Two civil buildings worth a look: the town theatre, and El Torno, the old public granary of the Admirals."),
+    ],
+    square=("Life in Medina de Rioseco happens under the porticoes of the Rúa Mayor and in the tapas area of calle Lázaro Alonso and the Plaza de Santo Domingo. "
+            "It is a small, friendly town where the barman soon knows your order, and where an aperitif with a tapa is part of the daily routine. "
+            "Do not leave without visiting a cake shop: bollos de baño and bollos de aceite, pelusas, marinas, abisinios and tortas de chicharrón are local specialities."),
+    eat=[
+        ("La Rúa (calle San Juan)", "A classic in town: restaurant since 1988, in a family business that started as a tavern in 1972. Traditional seasonal cooking; a weekday set menu of about €13."),
+        ("El Rincón de Unamuno", "A popular bar with a terrace and well-known croquetas, prawns, tortilla and pinchos."),
+        ("España", "A charming bar for a drink, with tapas of egg and black pudding."),
+        ("Pasos", "A restaurant with medieval-style décor and a long menu of Castilian dishes."),
+        ("La Era (Plaza Mayor 9)", "A restaurant right on the main square."),
+        ("Casa Manolo", "One of the best-rated places in town, with more than 1,400 reviews."),
+        ("Confitería Cubero", "Pastries and cakes, and a good stop for the local sweets."),
+    ],
+    calendar=[
+        ("5 January", "The Three Kings arrive by boat, on the 'Antonio de Ulloa', to the canal dock: a parade declared of Tourist Interest of Castile and León."),
+        ("March or April", "Holy Week, declared of International Tourist Interest (2009) and Intangible Heritage (BIC, 2019). Seventeen brotherhoods and more than twenty floats carved by 16th- and 17th-century masters are carried on shoulders through the narrow streets; the exit of El Longinos and La Escalera is the most famous moment. In 2026 it started on 27 March."),
+        ("All year", "The tourist boat on the Canal de Castilla, the museums and the Holy Week Museum."),
+    ],
+    food=("The cooking is that of Tierra de Campos: roast suckling lamb, pulses, game, local cheeses and the wines of nearby Cigales and Toro. "
+          "The sweet tradition is especially strong, with its bollos, pelusas, marinas and abisinios."),
+    outdoors=("Medina de Rioseco sits on the wide, open plains of Tierra de Campos, at the foot of the Montes Torozos. The Canal de Castilla towpath is flat and perfect for walking and cycling, and the canal and its locks attract birds and anglers. "
+              "Big skies, sunsets over the wheat fields and very little traffic."),
+    services=("The health centre is on the Plaza Mayor and is being fully rebuilt with more than €5 million: the new building will have 14 consulting rooms, including one for paediatric nursing, and will serve about 6,600 people in the area. "
+              "During the works, which started in July 2025 and last about 18 months, care continues in the Casino de Recreo. The nearest hospitals are in Valladolid, about 40 km away. "
+              "The town belongs to the World Health Organization's network of age-friendly cities (since 2021); about 32% of residents are over 60."),
+    transport=[
+        ("Bus to Valladolid", "Around 17 buses a day (Linecar and Alsa), 20–40 minutes, from about €3. Some go to Valladolid airport. Buses leave from the bus station on calle La Estación."),
+        ("Bus to León", "About 9 Alsa buses a day, from about €9.60; the first leaves around 1:30 and the last around 20:55."),
+        ("Train", "There is no passenger railway in town. Valladolid, 40 km away, has fast trains to Madrid Chamartín in about an hour."),
+        ("Road", "On the N-601 Valladolid–León road: Valladolid is about 40 km (about 30 minutes). The road is being upgraded to the A-60 motorway in stages; the Villanubla–Medina de Rioseco section has its environmental approval. The A-6 Madrid–A Coruña motorway is reached at exits 216–217 (Villardefrades, Medina de Rioseco)."),
+        ("Airports", "Valladolid–Villanubla airport is on the N-601, between Medina de Rioseco and Valladolid. For most international flights, use Madrid-Barajas via the train from Valladolid."),
+        ("Car", "Useful: with no train and a hospital 40 km away, most residents drive, although the buses to Valladolid are frequent."),
+    ],
+    market=("In October 2026 the average price in Medina de Rioseco was €969 per m² (flats €1,140, houses €645), with flats up 8.4% in a year and 27.4% in three years (RealAdvisor). "
+            "Typical flat prices: a studio about €53,000, a 2-bedroom flat about €66,000, a 3-bedroom flat about €86,000 and a 4-bedroom flat about €114,000. "
+            "Houses are larger and cheaper per square metre: village houses with big rooms and yards are common. "
+            "This is a small market with few homes for sale at any one time, and the portals disagree (Indomio gave an asking price of €462 per m² in July 2026), so real comparables matter. "
+            "Rental data for a town this size is thin; ask us for current rents before you plan an investment."),
+    budgets=[
+        ("€55,000–70,000", "A studio or a 2-bedroom flat, often to update."),
+        ("€85,000–100,000", "A 3-bedroom flat in town, close to the Rúa Mayor and the bus station."),
+        ("€110,000–150,000", "A large 4-bedroom flat, or a village house with outdoor space that may need work."),
+    ],
+    downsides=["No train: you depend on the bus or the car, although Valladolid is only 30 minutes away.",
+               "No hospital in town; the nearest are in Valladolid, about 40 km away.",
+               "Cold, foggy winters and hot summers on the open plain.",
+               "A small town of about 4,600 people: quiet outside Holy Week and the summer.",
+               "The health centre is being rebuilt until about 2027, with care in temporary premises."],
+    nearby=[("Valladolid (about 40 km)", "Regional capital with shopping, culture, university hospitals and fast trains to Madrid."),
+            ("Canal de Castilla and Tamariz de Campos", "Follow the Campos branch of the canal to its locks by boat, bike or on foot."),
+            ("Urueña", "A walled hilltop village known as Spain's 'book town', with bookshops and wide views over Tierra de Campos."),
+            ("Montes Torozos", "The plateau of oak woods and moors between Medina de Rioseco and Valladolid, good for walking and cycling."),
+            ("León (about 100 km)", "Cathedral, Gaudí's Casa Botines and a lively tapas quarter, along the N-601.")],
+    videos=[("lLIyzwIemfw", "What not to miss in Medina de Rioseco, the City of the Admirals"),
+            ("b6PsboSPzGA", "Medina de Rioseco, Tierra de Campos (Valladolid)")],
+    faq=[("How do I get from Medina de Rioseco to Valladolid?", "By bus (about 17 a day, 20–40 minutes, from about €3) or by car on the N-601 (about 40 km, 30 minutes)."),
+         ("Is there a train station in Medina de Rioseco?", "No. The nearest station with fast trains is Valladolid, about 40 km away, with trains to Madrid in about an hour."),
+         ("Is there a doctor in Medina de Rioseco?", "Yes. The health centre on the Plaza Mayor serves about 6,600 people and is being rebuilt with 14 consulting rooms; the nearest hospitals are in Valladolid."),
+         ("When is the best time to visit?", "Holy Week, declared of International Tourist Interest, is the highlight of the year; 5 January is special too, when the Three Kings arrive by boat on the canal."),
+         ("What does a flat cost in Medina de Rioseco?", None),
+         ("Is Medina de Rioseco a good place to retire?", "For people who want a quiet, walkable historic town with a health centre, frequent buses to Valladolid and low prices, yes; it belongs to the WHO network of age-friendly cities. People who need a hospital nearby every week may prefer Valladolid or Medina del Campo.")],
+    sources=[("Turismo Castilla y León – Holy Week in Medina de Rioseco", "https://www.turismocastillayleon.com/es/semanasanta/interes-turistico-internacional/semana-santa-medina-rioseco"),
+             ("Turismo Castilla y León – Culture and traditions", "https://www.turismocastillayleon.com/es/patrimonio-cultura/medina-rioseco/cultura-tradiciones"),
+             ("Terranostrum – What to see in Medina de Rioseco", "https://www.terranostrum.es/turismo/valladolid/ruta-medina-de-rioseco-y-alrededores"),
+             ("El Español – Holy Week and brotherhoods (2025)", "https://elespanol.com/castilla-y-leon/region/valladolid/20250412/pueblo-medieval-cofrades-habitantes-famoso-semana-santa/1003743705340_0.html"),
+             ("Sacyl – New health centre in Medina de Rioseco (2025)", "https://www.saludcastillayleon.es/HRHortega/es/actualidad/reforma-centro-salud-medina-rioseco-permitira-contar-consul"),
+             ("WHO – Age-friendly world: Medina de Rioseco", "https://extranet.who.int/agefriendlyworld/network/medina-de-rioseco/"),
+             ("Fascinating Spain – Eating in Medina de Rioseco", "https://www.fascinatingspain.com/articulo/where-to-eat-in-castile-and-leon/where-to-eat-in-medina-de-rioseco/20170523212122068966.html"),
+             ("Gastroranking – restaurants in Medina de Rioseco", "https://gastroranking.es/restaurantes/valladolid/medina-de-rioseco/"),
+             ("Omio – Medina de Rioseco to Valladolid (indicative)", "https://www.omio.es/viajes/medina-de-rioseco/valladolid"),
+             ("Movelia – Medina de Rioseco to León bus (indicative)", "https://www.movelia.es/ca/node/2098"),
+             ("BOE – A-60 motorway, Villanubla–Medina de Rioseco (2023)", "https://boe.gob.es/boe/dias/2023/07/15/pdfs/BOE-A-2023-16454.pdf"),
+             ("Indomio – Valladolid province market", "https://www.indomio.es/mercado-inmobiliario/castilla-y-leon/valladolid-provincia/")],
+),
 }
