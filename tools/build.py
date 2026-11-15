@@ -236,8 +236,15 @@ def province_page(pv):
 
 
 HOME_CSS = """<style>
-.hhero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;background:#222 url('/img/villablino-laciana-valley.jpg') center/cover no-repeat}
-.hhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 20%,rgba(0,0,0,.68) 100%)}
+.hhero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;background:#222;overflow:hidden}
+.hhero .mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:3px}
+.hhero .mosaic a{position:relative;display:block;overflow:hidden}
+.hhero .mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.hhero .mosaic span{position:absolute;top:10px;left:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.45);padding:3px 8px;color:#fff;z-index:2}
+.hhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 15%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.82) 100%);pointer-events:none}
+.hhero .wrap{pointer-events:none}.hhero .wrap a{pointer-events:auto}
+.photocred{font-size:12px;color:var(--muted);padding:6px 0 0}.photocred a{color:var(--muted)}
+@media(max-width:800px){.hhero .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr)}}
 .hhero .wrap{position:relative;z-index:2;padding-bottom:60px;width:100%}
 .hhero h1{font-family:var(--serif);font-weight:800;font-size:clamp(36px,6vw,74px);line-height:1.03;margin:10px 0 14px;max-width:900px;text-shadow:0 3px 18px rgba(0,0,0,.35)}
 .hhero p{font-size:20px;max-width:640px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
@@ -263,6 +270,31 @@ HOME_CSS = """<style>
 @media(max-width:800px){.trust ul{grid-template-columns:1fr 1fr}.steps,.who{grid-template-columns:1fr}.cform{grid-template-columns:1fr}.hhero{min-height:70vh}}
 </style>"""
 
+HERO_TILES = [("ferrol", "Ferrol · Atlantic coast"), ("avila", "Ávila · medieval walls"), ("lepe", "Lepe · Costa de la Luz"),
+              ("ponferrada", "El Bierzo · mountains"), ("merida", "Mérida · Roman heritage"), ("zamora", "Zamora · the Duero")]
+
+
+def hero_mosaic():
+    import areagen
+    tiles = []
+    for slug, label in HERO_TILES:
+        if not areagen.IMGS.get(slug, {}).get("ok"):
+            continue
+        tiles.append(f'<a href="/areas/{slug}/" tabindex="-1"><img src="/img/areas/{slug}-s.jpg" alt="{e(label)}" '
+                     f'{"" if len(tiles) < 2 else "loading=" + chr(34) + "lazy" + chr(34)}><span>{e(label)}</span></a>')
+    return f'<div class="mosaic" aria-hidden="true">{"".join(tiles)}</div>'
+
+
+def hero_credits():
+    import areagen
+    parts = []
+    for slug, label in HERO_TILES:
+        i = areagen.IMGS.get(slug, {})
+        if i.get("ok"):
+            parts.append(f'<a href="{e(i["page"])}" rel="nofollow noopener" target="_blank">{e(label.split(" · ")[0])}</a> ({e(i["artist"] or "Wikimedia Commons")}, {e(i["license"])})')
+    return '<div class="wrap photocred">Cover photos via Wikimedia Commons: ' + "; ".join(parts) + '.</div>' if parts else ""
+
+
 def homepage(guides):
     from sitedata import PROPERTIES
     props = "".join(card_html(p) for p in PROPERTIES[:3])
@@ -279,10 +311,10 @@ def homepage(guides):
     og = f'<meta property="og:type" content="website"><meta property="og:image" content="{BASE}/img/villablino-laciana-valley.jpg">'
     topics = "".join(f'<a href="/guides/#{c}">{e(n)}</a>' for c, n in TOPICS.items())
     return (head("Homes for Sale in Spain, Found and Negotiated for You", "Hand-picked homes in quiet, beautiful parts of Spain. We research the area and negotiate the price for you. You only pay if you buy.", BASE + "/", PROP_CSS + HOME_CSS + og + ldh) +
-        '<section class="hhero"><div class="wrap"><div class="eyebrow">Hidden Spain Bargains</div>'
+        f'<section class="hhero">{hero_mosaic()}<div class="wrap"><div class="eyebrow">Your property shopper in Spain</div>'
         '<h1>Your home in Spain, found and negotiated for you.</h1>'
         '<p>We find hidden bargains in quiet, beautiful parts of Spain, explain the area like a local, and negotiate the price on your behalf. You only pay if you buy.</p>'
-        '<div class="btns"><a class="btn" href="/properties/">See homes</a><a class="btn ghost" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a></div></div></section>'
+        '<div class="btns"><a class="btn" href="/properties/">See homes</a><a class="btn ghost" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a></div></div></section>' + hero_credits() +
         '<section class="trust"><ul><li><b>You pay only if you buy</b>Fee from the saving we get</li><li><b>We work for you</b>Not for the seller</li><li><b>Checked figures</b>Official sources, dated</li><li><b>In English</b>From first message to keys</li></ul></section>'
         '<section class="hsec"><div class="wrap"><div class="kicker">For sale now</div><h2>Hand-picked homes</h2>'
         f'<div class="pgrid">{props}</div><p style="margin-top:18px"><a href="/properties/">Search all homes →</a> · <a href="/properties/#request">Tell us what you are looking for →</a></p></div></section>'
