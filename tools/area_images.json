@@ -151,5 +151,32 @@
   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
   "h": 1034,
   "ok": true
+ },
+ "badajoz": {
+  "file": "Badajoz_desde_la_Torre_de_Espantaperros.jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Alonso de Mendoza",
+  "page": "https://commons.wikimedia.org/wiki/File:Badajoz_desde_la_Torre_de_Espantaperros.jpg",
+  "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "h": 899,
+  "ok": true
+ },
+ "merida": {
+  "file": "Temple_of_Diana_in_Mérida_(cropped_2).jpg",
+  "license": "CC BY-SA 4.0",
+  "artist": "Fernando",
+  "page": "https://commons.wikimedia.org/wiki/File:Temple_of_Diana_in_M%C3%A9rida_(cropped_2).jpg",
+  "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "h": 1447,
+  "ok": true
+ },
+ "lepe": {
+  "file": "Lepe_(Huelva)_(Spain)_-_33184483222.jpg",
+  "license": "CC BY 2.0",
+  "artist": "Jose A.",
+  "page": "https://commons.wikimedia.org/wiki/File:Lepe_(Huelva)_(Spain)_-_33184483222.jpg",
+  "licurl": "https://creativecommons.org/licenses/by/2.0",
+  "h": 1146,
+  "ok": true
  }
 }
