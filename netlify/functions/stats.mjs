@@ -4,6 +4,23 @@ import { getStore } from "@netlify/blobs";
 const TARGET = ["United Kingdom", "United States", "Canada", "Australia", "New Zealand", "Ireland", "Netherlands", "Germany", "Belgium", "Sweden", "Norway", "Denmark", "Switzerland"];
 const FLAGS = { "United Kingdom": "🇬🇧", "United States": "🇺🇸", "Canada": "🇨🇦", "Australia": "🇦🇺", "New Zealand": "🇳🇿", "Ireland": "🇮🇪", "Netherlands": "🇳🇱", "Germany": "🇩🇪", "Belgium": "🇧🇪", "Sweden": "🇸🇪", "Norway": "🇳🇴", "Denmark": "🇩🇰", "Switzerland": "🇨🇭", "Spain": "🇪🇸" };
 
+// Data-centre towns (Google, AWS, Microsoft, Meta): visits from here are robots, not buyers.
+const DC = /^(Council Bluffs|Ashburn|The Dalles|Boardman|Prineville|Quincy|Moncks Corner|Lenoir|Mayes County|Pryor|Altoona|Papillion|Des Moines|Santa Clara|San Jose|Clifton|Forest City|Douglas County)$/i;
+const channel = (ref) => {
+  const r = ref.toLowerCase();
+  if (r.startsWith("utm:")) { const u = r.slice(4); return /tiktok|tt/.test(u) ? "TikTok" : /google/.test(u) ? "Google" : /insta|ig/.test(u) ? "Instagram" : /face|fb/.test(u) ? "Facebook" : /whats|wa/.test(u) ? "WhatsApp" : /mail|newsletter/.test(u) ? "Email" : u; }
+  if (r === "direct") return "Direct / app (no referrer)";
+  if (/tiktok/.test(r)) return "TikTok";
+  if (/(^|\.)google\./.test(r)) return "Google";
+  if (/bing|duckduckgo|yahoo|ecosia|brave/.test(r)) return "Other search engines";
+  if (/chatgpt|openai|perplexity|claude|gemini|copilot/.test(r)) return "AI assistants";
+  if (/facebook|fb\.|instagram/.test(r)) return "Facebook / Instagram";
+  if (/youtube/.test(r)) return "YouTube";
+  if (/reddit/.test(r)) return "Reddit";
+  if (/whatsapp|wa\.me/.test(r)) return "WhatsApp";
+  return "Other websites";
+};
+
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 export default async (req) => {
@@ -17,8 +34,12 @@ export default async (req) => {
   const only = url.searchParams.get("view") || "target";
   const since = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
   const { blobs } = await getStore("visits").list();
-  const all = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since)
+  const parsed = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since)
+    .map((p) => ({ p, bot: p[8] === "bot" || (p.length >= 8 && DC.test(decodeURIComponent(p[6]))) || (p.length >= 8 && !p[5] && decodeURIComponent(p[6]) === "Unknown") }));
+  const bots = parsed.filter((x) => x.bot).map((x) => x.p);
+  const all = parsed.filter((x) => !x.bot).map((x) => x.p)
     .map((p) => ({ day: p[0], country: decodeURIComponent(p[1]), device: p[2], ref: decodeURIComponent(p[3]), page: decodeURIComponent(p[4]), lang: p.length >= 7 ? decodeURIComponent(p[5]) : "", city: p.length >= 8 ? decodeURIComponent(p[6]) + " (" + decodeURIComponent(p[1]) + ")" : "" }))
+        .map((r) => ({ ...r, channel: channel(r.ref) }))
     .map((r) => ({ ...r, expat: r.country === "Spain" && r.lang && !/^(es|ca|gl|eu)/.test(r.lang) }));
   const tgt = all.filter((r) => TARGET.includes(r.country) || r.expat);
   const expats = all.filter((r) => r.expat).length;
@@ -47,14 +68,16 @@ table{width:100%;border-collapse:collapse}td{padding:6px 4px;border-bottom:1px s
 a{color:#8B0000;margin-right:10px}a.on{font-weight:700;text-decoration:none;border-bottom:2px solid #8B0000}.note{font-size:13px;color:#666;margin-top:24px}</style></head><body>
 <h1>Hidden Spain Bargains · Visits</h1><p>${links}</p><p>${views}</p>
 <div class=kpis><div class="kpi main"><b>${tgt.length}</b><span>target audience (${pct}%)</span></div><div class=kpi><b>${expats}</b><span>foreigners in Spain</span></div><div class=kpi><b>${es.length}</b><span>Spanish-speaking, in Spain</span></div><div class=kpi><b>${rest}</b><span>other countries</span></div></div>
+<p style="font-size:14px;color:#555">Robots filtered out: <b>${bots.length}</b> (data centres, automated browsers). They are not counted anywhere below.</p>
 ${table(only === "target" ? "Target countries" : "By country", only === "target" ? tgt : all, "country")}
 ${table("Cities", rows, "city")}
 ${table("Browser language", rows, "lang")}
 ${table("Pages they read", rows, "page")}
-${table("Where they come from", rows, "ref")}
+${table("Where they come from (channel)", rows, "channel")}
+${table("Referring website (detail)", rows, "ref")}
 ${table("By day", rows, "day", true)}
 ${table("Device", rows, "device")}
-<p class=note>Your own visits from this device are not counted (a private cookie was set when you opened this page). Target audience = visits from ${TARGET.map(esc).join(", ")}, plus visits from Spain whose browser is not in Spanish, Catalan, Galician or Basque (foreigners living in Spain). Visits recorded before 14 Nov 2026 have no language data.</p>
+<p class=note>Your own visits from this device are not counted (a private cookie was set when you opened this page). Target audience = visits from ${TARGET.map(esc).join(", ")}, plus visits from Spain whose browser is not in Spanish, Catalan, Galician or Basque (foreigners living in Spain). Visits recorded before 14 Nov 2026 have no language data. Tip: TikTok and Instagram apps often hide where a visitor came from, so put links with ?utm_source=tiktok (or instagram, whatsapp) in your bio and messages.</p>
 <script>document.cookie="hsb_me=1; max-age=315360000; path=/; SameSite=Lax"</script>
 </body></html>`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
