@@ -80,7 +80,7 @@ def page(a, others, B):
             f'<header class="head"><div class="kicker">{e(a["prov"])} · {e(a["region"])}</div><h1>Living in {e(a["name"])}</h1><p class="lead">{e(a["hook"])}</p>'
             f'<div class="tagrow">{"".join("<i>" + e(t) + "</i>" for t in a["tags"])}</div>'
             f'<p class="meta">By La Comercial Inmobiliaria · Prices checked {B["UPDATED_TXT"]}</p></header>'
-            f'<article class="body">{body}{B["cta"]()}<h2>Frequently asked questions</h2>{faq_html}<h2>Sources</h2><ul class="src">{src_html}</ul>'
+            f'<article class="body">{body}{B["cta"]("", a["name"])}<h2>Frequently asked questions</h2>{faq_html}<h2>Sources</h2><ul class="src">{src_html}</ul>'
             '<p class="src">Prices are modelled averages that change every month. We re-check them regularly; ask us for real, current homes.</p></article>'
             f'<section class="related"><div class="wrap"><h2>More hidden places nearby</h2><div class="agrid">{cards}</div><p><a href="/areas/">All area guides →</a></p></div></section>'
             + B["footer"]())

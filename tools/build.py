@@ -54,10 +54,11 @@ def footer():
             f'<a class="wa" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener" aria-label="WhatsApp">{WA_SVG}</a>'
             f'\n{PING}\n{NAV_JS}\n</body>\n</html>')
 
-def cta(who=""):
+def cta(who="", place=""):
     who_txt = (who + "%20") if who else ""
-    return ('<div class="cta"><h2>Want us to find your home in Spain?</h2>'
-            '<p>We select homes in the Laciana Valley and El Bierzo, research the area for you and negotiate the price on your behalf. '
+    where = f"in {place} and the towns around it" if place else "in quiet, beautiful parts of Spain"
+    return ('<div class="cta"><h2>' + (f'Want us to find your home in {e(place)}?' if place else 'Want us to find your home in Spain?') + '</h2>'
+            f'<p>We search for homes {e(where)}, research the area for you and negotiate the price on your behalf. '
             'You only pay us if you buy, and our fee comes out of the discount we negotiate. We answer in English.</p>'
             f'<div class="btns"><a class="btn" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20{who_txt}interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a>'
             '<a class="btn ghost" href="/properties/">See properties</a></div></div>')
