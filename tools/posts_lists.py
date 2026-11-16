@@ -52,7 +52,7 @@ dict(slug="spanish-towns-under-1150-m2-with-a-direct-train-to-madrid", country=C
 <p>A price per m² is an average. In every one of these towns you will find flats that need work and others ready to move into. Before you buy, check the building, the community fees and the energy certificate. That is exactly what we do for our clients: we look at the home, the street and the paperwork, and we negotiate the price down.</p>
 <!--CLOSER-->""",
   faq=[("Which Spanish town under €1,150 per m² is closest to Madrid by train?", "Medina del Campo: " + F('train_medina') + "."),
-       ("Where are flats lowest in this list?", "Bembibre, at about " + F('area_bembibre') + ", followed by Puertollano at about " + F('area_puertollano') + "."),
+       ("Where are flat prices lowest in this list?", "Bembibre, at about " + F('area_bembibre') + ", followed by Puertollano at about " + F('area_puertollano') + "."),
        ("Do these towns have hospitals?", "Ponferrada, Linares, Puertollano and Medina del Campo have their own hospitals. Bembibre and Astorga use Hospital El Bierzo in Ponferrada and the hospitals in León; Arévalo has a health centre and uses the hospital in Ávila.")],
   sources=src("area_spain", "area_bembibre", "area_puertollano", "area_linares", "area_arevalo", "area_ponferrada", "area_astorga", "area_medina-del-campo",
               "train_medina", "train_puertollano", "train_arevalo", "train_linares", "train_ponferrada")

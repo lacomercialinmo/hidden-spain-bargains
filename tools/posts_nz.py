@@ -18,8 +18,8 @@ dict(slug="moving-to-spain-from-new-zealand-2026", country=C, topic="visas", pil
   sources=src("whv", "dnv_income", "nlv_income", "price_nz") + BASE_SOURCES),
 
 dict(slug="nz-house-prices-vs-spain", country=C, topic="cost", img="town", mins=5,
-  kicker=TOPICS["cost"], title="NZ$755,000 Median vs a Mountain Home in Spain",
-  h1="A NZ$755,000 median, or a mountain home in Spain?",
+  kicker=TOPICS["cost"], title="NZ$763,000 Median vs a Mountain Home in Spain",
+  h1="A NZ$763,000 median, or a mountain home in Spain?",
   desc=f"New Zealand's median house price is {F('price_nz').split(' (')[0]}. Here is what a home costs in a UNESCO valley in north-west Spain, with real figures.",
   lead=f"New Zealand's median house price is {F('price_nz')}. In Villablino, in Spain's Laciana Valley, homes sell for around {F('price_villablino')}.",
   body=f"""{price_table([("New Zealand (national median)", F('price_nz')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
@@ -51,7 +51,7 @@ dict(slug="working-holiday-visa-spain-for-new-zealanders", country=C, topic="vis
 dict(slug="brown-bears-and-birch-forests", country=C, topic="life", img="nature", mins=5,
   kicker=TOPICS["life"], title="Brown Bears and Birch Forests: Wild Spain for Kiwis",
   h1="Brown bears and birch forests: the wild Spain",
-  desc="New Zealand has no large wild mammals. North-west Spain has brown bears and capercaillie. Where to see them, and where to live.",
+  desc="New Zealand has no large native mammals. North-west Spain has brown bears and capercaillie. Where to see them, and where to live.",
   lead="New Zealand's wildlife is famous for its birds. In the mountains of north-west Spain, you share the valleys with the Cantabrian brown bear.",
   body=f"""<h2>The bears of the Cantabrian Mountains</h2>
 <p>The Laciana Valley, around Villablino, is one of the strongholds of the Cantabrian brown bear and the capercaillie. The bears live in the mountains, not in town.</p>
@@ -72,7 +72,7 @@ dict(slug="las-medulas-and-el-bierzo-landscapes", country=C, topic="life", img="
   body=f"""<h2>Las Médulas</h2>
 <p>Red peaks and tunnels carved by Roman engineers, rising from chestnut forests. It is {F('medulas')}.</p>
 <h2>El Bierzo</h2>
-<p>A green basin of vineyards around Ponferrada, a city of {F('pf_population')} where {F('pf_castle')}.</p>
+<p>A green basin of vineyards around Ponferrada, a city of {F('pf_population')}. {Fc('pf_castle')}.</p>
 <h2>The Laciana Valley</h2>
 <p>North of Ponferrada, Villablino sits in a UNESCO Biosphere Reserve with homes around {F('price_villablino')}.</p>
 {villablino()}""",

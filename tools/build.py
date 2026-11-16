@@ -118,6 +118,9 @@ def load(pattern):
         out += m.POSTS
     return out
 
+def plural(n, word):
+    return f"{n} {word}" + ("" if n == 1 else "s")
+
 def write(rel, content):
     path = os.path.join(SITE, rel)
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -192,7 +195,7 @@ def properties_index():
     life_opts = opts(sorted({(l, l) for p in PROPERTIES for l in p["lifestyle"]}))
     prices = [25000, 50000, 75000, 100000, 150000, 200000, 300000]
     pm = opts([(v, f"€{v:,}") for v in prices])
-    provs = "".join((f'<a class="prov" href="/properties/{p["slug"]}/"><b>{e(p["name"])}</b><span>{e(p["region"])} · {sum(1 for x in PROPERTIES if x["province"]==p["slug"])} home(s)</span></a>' if p["active"]
+    provs = "".join((f'<a class="prov" href="/properties/{p["slug"]}/"><b>{e(p["name"])}</b><span>{e(p["region"])} · {plural(sum(1 for x in PROPERTIES if x["province"]==p["slug"]), "home")}</span></a>' if p["active"]
                      else f'<div class="prov soon"><b>{e(p["name"])}</b><span>{e(p["region"])} · coming soon</span></div>') for p in PROVINCES)
     js = ('<script>(function(){var D=' + data + ',f=document.getElementById("sf"),g=document.getElementById("res"),c=document.getElementById("cnt");'
           'function v(n){return f.elements[n].value}'
@@ -240,7 +243,7 @@ def province_page(pv):
             '<div class="wrap" style="padding-top:14px;padding-bottom:40px"><div class="kicker">' + e(pv["region"]) + '</div>'
             f'<h1 style="font-family:var(--serif);font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.05;margin:10px 0 12px">Homes for sale in {e(pv["name"])}</h1>'
             f'<p class="lead" style="max-width:760px">{e(pv["intro"])}</p>'
-            f'<p class="count">{len(ps)} home(s) · Areas: {e(", ".join(pv["areas"]))} · <a href="/areas/villablino/">Read the Villablino area guide</a></p>'
+            f'<p class="count">{plural(len(ps), "home")} · Areas: {e(", ".join(pv["areas"]))} · <a href="/areas/villablino/">Read the Villablino area guide</a></p>'
             f'<div class="pgrid">{"".join(card_html(p) for p in ps)}</div>' + request_form() + '</div>' + footer())
 
 

@@ -23,8 +23,8 @@ dict(slug="moving-to-spain-from-the-us-2026", country=C, topic="visas", pillar=T
   sources=src("dnv_income", "nlv_income", "price_us") + BASE_SOURCES),
 
 dict(slug="us-home-prices-vs-spain", country=C, topic="cost", img="town", mins=5,
-  kicker=TOPICS["cost"], title="A $417,500 Median Home vs a Paid-Off Home in Spain",
-  h1="A $417,500 median home, or a paid-off home in Spain?",
+  kicker=TOPICS["cost"], title="A $416,700 Median Home vs a Paid-Off Home in Spain",
+  h1="A $416,700 median home, or a paid-off home in Spain?",
   desc=f"The median US existing home costs {F('price_us').split(' (')[0]}. In a Spanish mountain town a three-bedroom apartment costs a small fraction of that, with no mortgage.",
   lead=f"The median existing-home price in the US is {F('price_us')}. In Villablino, north-west Spain, homes sell for around {F('price_villablino')}.",
   body=f"""{price_table([("United States (median existing home)", F('price_us')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}

@@ -63,7 +63,7 @@ dict(slug="stop-renting-in-the-uk-own-a-home-in-spain", country=C, topic="cost",
   desc=f"The average UK rent is {F('rent_uk').split(' (')[0]}. Here is how buying a home outright in rural Spain compares, with real figures for 2026.",
   lead=f"The average private rent in the UK is {F('rent_uk')}. At that rate, a little over two years of rent would pay for our three-bedroom flat in Villablino.",
   body=f"""<h2>Rent vs own: a simple comparison</h2>
-<p>At {F('rent_uk')}, a tenant pays around £16,700 a year. Our three-bedroom flat in Villablino is listed at €42,000. That is less than three years of average UK rent, and then the home is yours.</p>
+<p>At {F('rent_uk')}, a tenant pays around £16,900 a year. Our three-bedroom flat in Villablino is listed at €42,000. That is less than three years of average UK rent, and then the home is yours.</p>
 <h2>What owning still costs</h2>
 <ul><li>The transfer tax when you buy: {F('itp_cyl')} in Castile and León.</li>
 <li>A yearly municipal tax (IBI), usually modest in small towns.</li>

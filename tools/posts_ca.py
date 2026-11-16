@@ -37,7 +37,7 @@ dict(slug="from-toronto-to-castellon", country=C, topic="cost", mins=6,
 <p>Under 36? The working holiday visa gives you {F('whv')}. Otherwise, remote workers use the digital nomad visa ({F('dnv_income')}) and savers the non-lucrative visa. <a href="/buyers-guide/visas-to-live-in-spain.html">See all visas</a>.</p>
 <h2>We are starting to look in Castellón</h2>
 <p>Castellón is the next province we are opening. <a href="/properties/#request">Tell us what you want</a> and we will search there for you, or start with the mountain homes we already have in León.</p>""",
-  faq=[("Is Castellón cheaper than Valencia and Alicante?", "Yes. Castellón homes averaged " + F('cs_price_prov') + "."),
+  faq=[("Are homes in Castellón more affordable than in Valencia and Alicante?", "Yes. Castellón homes averaged " + F('cs_price_prov') + "."),
        ("What is the weather like in Castellón?", Fc('cs_climate') + ".")],
   sources=src("price_toronto", "cs_price_prov", "cs_price_city", "cs_climate", "whv", "dnv_income")),
 
