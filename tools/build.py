@@ -59,7 +59,7 @@ def cta(who="", place=""):
     where = f"in {place} and the towns around it" if place else "in quiet, beautiful parts of Spain"
     return ('<div class="cta"><h2>' + (f'Want us to find your home in {e(place)}?' if place else 'Want us to find your home in Spain?') + '</h2>'
             f'<p>We search for homes {e(where)}, research the area for you and negotiate the price on your behalf. '
-            'You only pay us if you buy, and our fee comes out of the discount we negotiate. We answer in English.</p>'
+            'You only pay us if you buy: half of the saving we negotiate, VAT included, minimum €605. We answer in English. <a href="/buyers-guide/how-we-work.html">How our fee works</a>.</p>'
             f'<div class="btns"><a class="btn" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20{who_txt}interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a>'
             '<a class="btn ghost" href="/properties/">See properties</a></div></div>')
 
@@ -310,7 +310,7 @@ def homepage(guides):
     props = "".join(card_html(p) for p in PROPERTIES[:3])
     latest = [g for g in guides if g.get("pillar")][:3] + [g for g in guides if g.get("topic") in ("cost", "life") and not g.get("pillar")][:3]
     faqs = [("How does your home search work?", "Tell us what you need, we send you a shortlist with area guides, the owner shows you the home in person or by video call, and we negotiate the price for you."),
-            ("How much do you charge?", "You only pay if you buy. Our fee comes out of the discount we negotiate, and we explain the exact terms in writing before you see any property."),
+            ("How much do you charge?", "You only pay if you buy. Our fee is half of the saving we negotiate on the advertised price, VAT included, with a minimum of €605 (€500 + VAT). Example: if we get an €80,000 home down to €70,000, you save €10,000 and our fee is €5,000. If you do not buy, you pay nothing."),
             ("Can I buy without travelling to Spain?", "Yes. You can view by video call and sign through a power of attorney. You will need an NIE, the tax number every foreign buyer needs.")]
     faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{a}</p></details>" for q, a in faqs)
     ld = [{"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "Hidden Spain Bargains by La Comercial Inmobiliaria", "url": BASE + "/",
@@ -325,7 +325,7 @@ def homepage(guides):
         '<h1>Your home in Spain, found and negotiated for you.</h1>'
         '<p>We find hidden bargains in quiet, beautiful parts of Spain, explain the area like a local, and negotiate the price on your behalf. You only pay if you buy.</p>'
         '<div class="btns"><a class="btn" href="/properties/">See homes</a><a class="btn ghost" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a></div></div></section>' + hero_credits() +
-        '<section class="trust"><ul><li><b>You pay only if you buy</b>Fee from the saving we get</li><li><b>We work for you</b>Not for the seller</li><li><b>Checked figures</b>Official sources, dated</li><li><b>In English</b>From first message to keys</li></ul></section>'
+        '<section class="trust"><ul><li><b>You pay only if you buy</b>Half of the saving we get, min. €605</li><li><b>We work for you</b>Not for the seller</li><li><b>Checked figures</b>Official sources, dated</li><li><b>In English</b>From first message to keys</li></ul></section>'
         '<section class="hsec"><div class="wrap"><div class="kicker">For sale now</div><h2>Hand-picked homes</h2>'
         f'<div class="pgrid">{props}</div><p style="margin-top:18px"><a href="/properties/">Search all homes →</a> · <a href="/properties/#request">Tell us what you are looking for →</a></p></div></section>'
         '<section class="hsec"><div class="wrap"><div class="kicker">How it works</div><h2>Three steps to your home in Spain</h2><div class="steps">'
@@ -335,7 +335,7 @@ def homepage(guides):
         '</div><p style="margin-top:16px"><a href="/buyers-guide/how-we-work.html">More about how we work →</a></p></div></section>'
         '<section class="hsec"><div class="wrap who"><img src="/img/villablino-town.jpg" alt="Villablino town centre surrounded by mountains" loading="lazy"><div><div class="kicker">Who is behind it</div><h2>Hi, I\'m Antonio</h2>'
         '<p>I have worked as an independent real estate agent in Spain for more than 8 years, and I speak English fluently. Most agents work for the seller. I work for you: I find the home, check the area and push the price down.</p>'
-        '<p>Our fee comes out of the saving, so we only win when you do. You can follow our homes and area guides on TikTok at <a href="https://www.tiktok.com/@lacomercialrealestate" target="_blank" rel="noopener">@lacomercialrealestate</a>.</p></div></div></section>'
+        '<p>Our fee is half of the saving we negotiate (minimum €605, VAT included), so we only win when you do. You can follow our homes and area guides on TikTok at <a href="https://www.tiktok.com/@lacomercialrealestate" target="_blank" rel="noopener">@lacomercialrealestate</a>.</p></div></div></section>'
         '<section class="hsec"><div class="wrap"><div class="kicker">Articles</div><h2>A new life in Spain, explained</h2>'
         f'<div class="topics">{topics}</div><div class="cards">{"".join(gcard(g) for g in latest)}</div><p style="margin-top:18px"><a href="/guides/">All articles →</a></p></div></section>'
         '<section class="hsec"><div class="wrap who"><div><div class="kicker">Area guide</div><h2>Villablino and the Laciana Valley</h2>'

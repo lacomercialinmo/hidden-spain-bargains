@@ -5,7 +5,7 @@ dict(
   slug="how-we-work", kicker="Buyers guide", img="laciana-valley", mins=4,
   title="How Our Spanish Home Search Works | Hidden Spain Bargains",
   h1="How our home search works",
-  desc="We find homes in Spain, research the area for you and negotiate the price. You only pay if you buy, and our fee comes out of the discount we get.",
+  desc="We find homes in Spain, research the area for you and negotiate the price. You only pay if you buy: half of the saving we negotiate, minimum €605 incl. VAT.",
   lead="We work for the buyer, not the seller. We find the home, explain the area and negotiate the price for you, and you only pay us if you buy.",
   body="""
 <h2>What we do for you</h2>
@@ -17,7 +17,12 @@ dict(
 <li><b>We guide you to the notary.</b> We tell you which documents you need and who does what, so nothing surprises you.</li>
 </ul>
 <h2>How you pay us</h2>
-<p>You only pay if you buy. Our fee comes out of the saving we negotiate, so the better the deal we get you, the more we both win. We explain the exact terms in writing before you see any property, and you sign a simple search agreement in English and Spanish.</p>
+<p>You only pay if you buy. <b>Our fee is half of the saving we negotiate, VAT included, with a minimum of €605 (€500 + VAT).</b> The saving is the difference between the advertised price on the day you sign our search agreement and the price you finally pay.</p>
+<div class="tablewrap"><table><tr><th>Example</th><th>Advertised price</th><th>You pay</th><th>Saving</th><th>Our fee (VAT incl.)</th><th>You keep</th></tr>
+<tr><td>Good negotiation</td><td>€80,000</td><td>€70,000</td><td>€10,000</td><td>€5,000</td><td>€5,000</td></tr>
+<tr><td>Small discount</td><td>€60,000</td><td>€58,000</td><td>€2,000</td><td>€1,000</td><td>€1,000</td></tr>
+<tr><td>No discount possible</td><td>€50,000</td><td>€50,000</td><td>€0</td><td>€605 (minimum)</td><td>—</td></tr></table></div>
+<p>If you do not buy, you pay nothing. The seller pays us nothing either, so we work only for you. The terms are in a simple search agreement in English and Spanish that you sign before you see any property.</p>
 <h2>Step by step</h2>
 <ol>
 <li><b>Tell us what you need.</b> Budget, bedrooms, lifestyle and timing. Use the form on our <a href="/properties/#request">properties page</a> or WhatsApp us.</li>

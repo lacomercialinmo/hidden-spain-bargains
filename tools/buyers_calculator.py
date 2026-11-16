@@ -83,6 +83,8 @@ dict(slug="purchase-cost-calculator", kicker="Buyers guide · Calculator", mins=
 <ul><li><b>Transfer tax (ITP):</b> paid by the buyer on resale homes. Each region sets its own rate; the calculator uses the general rate for homes under €250,000.</li>
 <li><b>Notary and land registry:</b> regulated fees that depend on the price, {F('notary_registry')}.</li>
 <li><b>Lawyer or gestoría:</b> optional, but most buyers from abroad use one. Ask for a written quote and add it above.</li></ul>
+<h2>And our fee?</h2>
+<p>If you use our personal shopper service, you only pay if you buy: <b>half of the saving we negotiate on the advertised price, VAT included, with a minimum of €605</b>. If we get a €60,000 flat down to €54,000, the price falls by €6,000, our fee is €3,000 and you are still €3,000 better off, even before tax: the transfer tax is also lower on the lower price. <a href="/buyers-guide/how-we-work.html">How our fee works</a>.</p>
 <p>Not included: a mortgage (the bank pays most of its costs), moving, furniture and any work on the home. After you buy, you also pay a yearly local tax (IBI) and, if you live abroad, a yearly non-resident tax. <a href="/buyers-guide/buying-costs-and-taxes.html">See all the taxes explained</a>.</p>
 {FORM}""",
   faq=[("How much tax do I pay to buy a resale home in Spain?", "A regional transfer tax: " + F('itp_regions') + " at the general rate, plus notary and registry fees."),
