@@ -34,7 +34,7 @@ export default async (req) => {
   const only = url.searchParams.get("view") || "target";
   const since = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
   const { blobs } = await getStore("visits").list();
-  const parsed = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since)
+  const parsed = blobs.map((b) => b.key.split("|")).filter((p) => p.length >= 6 && p[0] >= since && !decodeURIComponent(p[4]).startsWith("/test-"))
     .map((p) => ({ p, bot: p[8] === "bot" || (p.length >= 8 && DC.test(decodeURIComponent(p[6]))) || (p.length >= 8 && !p[5] && decodeURIComponent(p[6]) === "Unknown") }));
   const bots = parsed.filter((x) => x.bot).map((x) => x.p);
   const all = parsed.filter((x) => !x.bot).map((x) => x.p)
