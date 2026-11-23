@@ -79,7 +79,7 @@ dict(
   desc="The main visas for people from the UK, US, Canada, Australia and NZ who want to live in Spain: digital nomad, non-lucrative and working holiday (2026).",
   lead="Buying a home in Spain does not give you the right to live here. If you are not an EU citizen you need a visa, and the three most used ones are the digital nomad visa, the non-lucrative visa and the working holiday visa.",
   body=f"""
-<div class="box"><p><b>Quick answer:</b> remote workers usually choose the <b>digital nomad visa</b> ({F('dnv_income')}). Retirees and people living on savings usually choose the <b>non-lucrative visa</b> ({F('nlv_income')}). Young Australians, New Zealanders and Canadians can use the <b>working holiday visa</b> ({F('whv')}).</p></div>
+<div class="box"><p><b>Quick answer:</b> remote workers usually choose the <b>digital nomad visa</b> ({F('dnv_income')}). Retirees and people living on savings usually choose the <b>non-lucrative visa</b> ({F('nlv_income')}). Young Australians, New Zealanders and Canadians can use the <b>working holiday visa</b>, which gives {F('whv')}.</p></div>
 <h2>Digital nomad visa (remote work)</h2>
 <p>This visa lets you live in Spain while you work remotely for companies or clients outside Spain. You need to show {F('dnv_income')}. The amount rises every year because it is tied to the Spanish minimum wage.</p>
 <h2>Non-lucrative visa (retirees and savers)</h2>

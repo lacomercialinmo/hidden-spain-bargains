@@ -41,7 +41,7 @@
 <p style="font-size:13px;color:var(--muted)" id="cn"></p>
 </div>
 <script>(function(){
-var R={"GBP": 0.83559, "USD": 1.1052, "CAD": 1.5758, "AUD": 1.6288, "NZD": 1.9978},S={GBP:"£",USD:"US$",CAD:"C$",AUD:"A$",NZD:"NZ$"},D="13 November 2026";
+var R={"GBP": 0.83735, "USD": 1.099, "CAD": 1.5723, "AUD": 1.6487, "NZD": 1.9968},S={GBP:"£",USD:"US$",CAD:"C$",AUD:"A$",NZD:"NZ$"},D="20 November 2026";
 try{fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=GBP,USD,CAD,AUD,NZD").then(function(r){return r.json()}).then(function(j){if(j&&j.rates){R=j.rates;D=j.date;run()}}).catch(function(){})}catch(e){}
 function eur(n){return "€"+Math.round(n).toLocaleString("en-GB")}
 function fx(n,c){return c==="EUR"?"":" ("+S[c]+Math.round(n*R[c]).toLocaleString("en-GB")+")"}
@@ -59,7 +59,7 @@ var h=document.getElementById("cf-sum");if(h)h.value=eur(p)+" | ITP "+r+"% | tot
 
 <h2>What is included</h2>
 <ul><li><b>Transfer tax (ITP):</b> paid by the buyer on resale homes. Each region sets its own rate; the calculator uses the general rate for homes under €250,000.</li>
-<li><b>Notary and land registry:</b> regulated fees that depend on the price, usually about €600 to €1,500 together, depending on the price.</li>
+<li><b>Notary and land registry:</b> regulated fees, usually about €600 to €1,500 together, depending on the price.</li>
 <li><b>Lawyer or gestoría:</b> optional, but most buyers from abroad use one. Ask for a written quote and add it above.</li></ul>
 <h2>And our fee?</h2>
 <p>If you use our personal shopper service, you only pay if you buy: <b>half of the saving we negotiate on the advertised price, VAT included, with a minimum of €605</b>. If we get a €60,000 flat down to €54,000, the price falls by €6,000, our fee is €3,000 and you are still €3,000 better off, even before tax: the transfer tax is also lower on the lower price. <a href="/buyers-guide/how-we-work.html">How our fee works</a>.</p>

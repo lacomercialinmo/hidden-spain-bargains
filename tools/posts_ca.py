@@ -99,7 +99,7 @@ dict(slug="retire-in-spain-from-canada", country=C, topic="retire", img="heritag
   desc="Sell a Canadian home, buy outright in Spain and keep the difference. The non-lucrative visa, healthcare and the quiet towns that make it work.",
   lead=f"You built a life in Canada. Now you can choose where to enjoy it. Sell a home worth around {F('price_ca')}, buy one in Spain outright, and keep most of the difference.",
   body=f"""<h2>The visa</h2>
-<p>The non-lucrative visa is the retirement route. You need {F('nlv_income')} and private health insurance.</p>
+<p>The non-lucrative visa is the retirement route. You need {F('nlv_income')}. You also need private health insurance.</p>
 <h2>The home</h2>
 <p>In Villablino homes cost around {F('price_villablino')}; in Castellón city, {F('cs_price_city')}. Mountains or sea, the maths works.</p>
 <h2>Healthcare</h2>

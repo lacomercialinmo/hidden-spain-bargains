@@ -11,7 +11,7 @@ dict(slug="moving-to-spain-from-the-us-2026", country=C, topic="visas", pillar=T
   body=f"""<h2>Option 1: digital nomad visa</h2>
 <p>For remote employees of US companies and freelancers with clients outside Spain. You need {F('dnv_income')}.</p>
 <h2>Option 2: non-lucrative visa</h2>
-<p>For retirees and people living on savings, investments or pensions, with no work in Spain. You need {F('nlv_income')}, plus private health insurance.</p>
+<p>For retirees and people living on savings, investments or pensions, with no work in Spain. You need {F('nlv_income')}. You also need private health insurance.</p>
 <h2>Taxes: the American exception</h2>
 <p>The US taxes its citizens on worldwide income wherever they live, and Spain taxes its residents too. The US–Spain tax treaty helps avoid paying twice, but you need a cross-border tax adviser before you move.</p>
 <h2>What a home costs</h2>
@@ -61,7 +61,7 @@ dict(slug="early-retirement-in-spain-for-americans", country=C, topic="retire", 
   desc="Retire early in Spain on savings or a pension: the non-lucrative visa, private health insurance and a home bought outright in the mountains.",
   lead=f"If you want to stop working and live on savings or a pension, the non-lucrative visa is the usual route. You need {F('nlv_income')}.",
   body=f"""<h2>The non-lucrative visa</h2>
-<p>You need {F('nlv_income')}, private health insurance and a clean criminal record. You cannot work in Spain on this visa. After five years of legal residence you can apply for long-term residence.</p>
+<p>You need {F('nlv_income')}. You also need private health insurance and a clean criminal record. After five years of legal residence you can apply for long-term residence.</p>
 <h2>Make your money last</h2>
 <p>The biggest cost in retirement is housing. With homes in Villablino at around {F('price_villablino')}, many retirees buy outright and live without rent or a mortgage.</p>
 <h2>Healthcare</h2>

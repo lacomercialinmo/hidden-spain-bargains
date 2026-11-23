@@ -24,7 +24,7 @@ dict(slug="nz-house-prices-vs-spain", country=C, topic="cost", img="town", mins=
   lead=f"New Zealand's median house price is {F('price_nz')}. In Villablino, in Spain's Laciana Valley, homes sell for around {F('price_villablino')}.",
   body=f"""{price_table([("New Zealand (national median)", F('price_nz')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>What €42,000 buys</h2>
-<p>Our current Villablino flat: three bedrooms, one bathroom, 74 m², south-facing and furnished. Add the transfer tax ({F('itp_cyl')}) and notary fees and it's yours outright.</p>
+<p>Our current Villablino flat: three bedrooms, one bathroom, 74 m², south-facing and furnished. Add the transfer tax ({F('itp_cyl').split(' (')[0]} in Castile and León) and notary fees and it's yours outright.</p>
 <h2>Running costs</h2>
 <p>A yearly municipal tax (IBI), and, if you don't live in Spain, a yearly non-resident tax: {F('irnr_imputed')}. <a href="/buyers-guide/buying-costs-and-taxes.html">All costs explained</a>.</p>
 {villablino()}""",
@@ -58,7 +58,7 @@ dict(slug="brown-bears-and-birch-forests", country=C, topic="life", img="nature"
 <h2>Where to watch them</h2>
 <p>Next door in Asturias, Somiedo is {F('somiedo')}.</p>
 <h2>Forests you'll walk every weekend</h2>
-<p>The valley is a {F('vb_unesco')}, with peaks above 2,000 metres and some of the finest birch forests in the Iberian Peninsula.</p>
+<p>The valley has been a {F('vb_unesco')}, with peaks above 2,000 metres and some of the finest birch forests in the Iberian Peninsula.</p>
 {villablino()}""",
   faq=[("Are there bears in Spain?", "Yes. The Cantabrian brown bear lives in the mountains of north-west Spain."),
        ("Where can I see bears?", "Guided bear-watching trips run in Somiedo Natural Park, Asturias.")],
@@ -70,7 +70,7 @@ dict(slug="las-medulas-and-el-bierzo-landscapes", country=C, topic="life", img="
   desc="Red Roman gold mines, vineyards and mountain villages. Why El Bierzo, in north-west Spain, wins over people who grew up with New Zealand's landscapes.",
   lead=f"You grew up with some of the world's great landscapes, so you're hard to impress. Las Médulas might do it: a {F('medulas')}.",
   body=f"""<h2>Las Médulas</h2>
-<p>Red peaks and tunnels carved by Roman engineers, rising from chestnut forests. It is {F('medulas')}.</p>
+<p>Red peaks and tunnels carved by Roman engineers, rising from chestnut forests. It has been a {F('medulas')}.</p>
 <h2>El Bierzo</h2>
 <p>A green basin of vineyards around Ponferrada, a city of {F('pf_population')}. {Fc('pf_castle')}.</p>
 <h2>The Laciana Valley</h2>

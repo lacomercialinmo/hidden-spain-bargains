@@ -49,7 +49,7 @@ dict(slug="uk-house-prices-vs-spain", country=C, topic="cost", img="town", mins=
   lead=f"The average UK home costs {F('price_uk')}. In Villablino, in north-west Spain, homes sell for around {F('price_villablino')}.",
   body=f"""{price_table([("United Kingdom (average home)", F('price_uk')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>What that means in practice</h2>
-<p>Our current flat in Villablino has three bedrooms and 74 m² and is listed at €42,000. Add the regional transfer tax ({F('itp_cyl')}) and notary fees, and you have the full cost of owning a home with no mortgage.</p>
+<p>Our current flat in Villablino has three bedrooms and 74 m² and is listed at €42,000. Add the regional transfer tax ({F('itp_cyl').split(' (')[0]} in Castile and León) and notary fees, and you have the full cost of owning a home with no mortgage.</p>
 <h2>The catch? There isn't one, but there is a trade-off</h2>
 <p>You won't be in a big city. You will be in a real town of {F('vb_population')}, surrounded by mountains, with fibre internet and services. For many people that is exactly the point.</p>
 {villablino()}""",
@@ -63,7 +63,7 @@ dict(slug="stop-renting-in-the-uk-own-a-home-in-spain", country=C, topic="cost",
   desc=f"The average UK rent is {F('rent_uk').split(' (')[0]}. Here is how buying a home outright in rural Spain compares, with real figures for 2026.",
   lead=f"The average private rent in the UK is {F('rent_uk')}. At that rate, a little over two years of rent would pay for our three-bedroom flat in Villablino.",
   body=f"""<h2>Rent vs own: a simple comparison</h2>
-<p>At {F('rent_uk')}, a tenant pays around £16,900 a year. Our three-bedroom flat in Villablino is listed at €42,000. That is less than three years of average UK rent, and then the home is yours.</p>
+<p>At {F('rent_uk')}, a tenant pays around £16,900 a year. Our three-bedroom flat in Villablino is listed at €42,000. That is only a little over two years of average UK rent, and then the home is yours.</p>
 <h2>What owning still costs</h2>
 <ul><li>The transfer tax when you buy: {F('itp_cyl')} in Castile and León.</li>
 <li>A yearly municipal tax (IBI), usually modest in small towns.</li>
@@ -98,7 +98,7 @@ dict(slug="green-spain-for-brits-who-dont-want-the-costas", country=C, topic="li
   desc="Mountains, forests, four seasons and stone villages: the Spain most British buyers never see, and why the Laciana Valley could suit you.",
   lead="Not everyone dreams of a beach bar. North-west Spain is green, mountainous and quiet, more Lake District than Benidorm, but with more sun and much lower prices.",
   body=f"""<h2>What it is like</h2>
-<p>The Laciana Valley is a {F('vb_unesco')}, with peaks above 2,000 metres, birch forests and rivers. The weather has four real seasons: {F('vb_climate')}.</p>
+<p>The Laciana Valley has been a {F('vb_unesco')}, with peaks above 2,000 metres, birch forests and rivers. The weather has four real seasons: {F('vb_climate')}.</p>
 <h2>Wildlife</h2>
 <p>The mountains around the valley are home to the Cantabrian brown bear and the capercaillie. They live in the mountains, not in town. Next door, Somiedo is {F('somiedo')}.</p>
 <h2>Winter sports and walking</h2>

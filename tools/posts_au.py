@@ -29,7 +29,7 @@ dict(slug="priced-out-in-australia-own-a-home-in-spain", country=C, topic="cost"
   lead=f"Rate rises, auctions you can't win, a deposit that keeps moving away. Australia's national median dwelling value is {F('price_au')}. Owning a home doesn't have to be a lifetime project.",
   body=f"""{price_table([("Australia (national median dwelling)", F('price_au')), ("Spain (average, per m²)", F('price_spain')), ("Villablino (per m²)", F('price_villablino'))])}
 <h2>A real example</h2>
-<p>Our current flat in Villablino has three bedrooms, 74 m², south-facing rooms and furniture included, listed at €42,000. Add the transfer tax ({F('itp_cyl')}) and notary fees, and that is the full price of owning it outright.</p>
+<p>Our current flat in Villablino has three bedrooms, 74 m², south-facing rooms and furniture included, listed at €42,000. Add the transfer tax ({F('itp_cyl').split(' (')[0]} in Castile and León) and notary fees, and that is the full price of owning it outright.</p>
 <h2>No auction, no bidding war</h2>
 <p>In Spain you negotiate. That is our job: we talk to the seller in Spanish and push the price down for you.</p>
 {villablino()}""",
@@ -61,7 +61,7 @@ dict(slug="ponferrada-templar-city-of-history", country=C, topic="life", mins=6,
   body=f"""<h2>A castle that is the city's heart</h2>
 <p>Ponferrada's castle is one of the great fortresses of north-west Spain. {Fc('pf_castle')}. You don't visit it once; you walk past it on your way to buy bread.</p>
 <h2>Roman gold and a wine valley</h2>
-<p>Las Médulas is a {F('medulas')}. Around Ponferrada, El Bierzo is a green valley of vineyards and orchards.</p>
+<p>Las Médulas has been a {F('medulas')}. Around Ponferrada, El Bierzo is a green valley of vineyards and orchards.</p>
 <h2>A real city, not a museum</h2>
 <p>Ponferrada has {F('pf_population')}, the region's reference hospital (Hospital El Bierzo) and a train station: {F('pf_train')}.</p>
 <h2>Mountains next door</h2>
@@ -98,7 +98,7 @@ dict(slug="christmas-in-the-snow-seasons-reversed", country=C, topic="life", img
 <h2>Summer without the burn</h2>
 <p>At about {F('vb_altitude')} above sea level, summer days are warm and nights cool. Rivers, forests and long evenings in the village squares.</p>
 <h2>Four real seasons</h2>
-<p>Green spring meadows, golden autumn birch forests, snow in winter. The valley is a {F('vb_unesco')}.</p>
+<p>Green spring meadows, golden autumn birch forests, snow in winter. The valley has been a {F('vb_unesco')}.</p>
 {villablino()}""",
   faq=[("Does it snow at Christmas in Villablino?", "Snow is common in the mountains in winter; Leitariegos ski resort is about 15 km away."),
        ("Are summers hot?", "Warm by day and cool at night, thanks to the altitude of about " + F('vb_altitude') + ".")],

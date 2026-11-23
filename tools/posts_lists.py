@@ -39,7 +39,7 @@ dict(slug="spanish-towns-under-1150-m2-with-a-direct-train-to-madrid", country=C
   kicker="Cost of living & homes", title="7 Towns Under €1,150/m² With a Direct Train to Madrid",
   h1="7 Spanish towns under €1,150 per m² with a direct train to Madrid",
   desc="Flats from €696 per m², less than half the Spanish average, in real towns with a direct train to Madrid. Prices, journey times and our area guides.",
-  lead=f"These seven Spanish towns have flats for under €1,150 per m², against {F('area_spain')} for Spain as a whole, and every one has a direct train to Madrid. You get a real town with a station, shops and health services, not an empty village.",
+  lead=f"These seven Spanish towns have flats for under €1,150 per m², against {F('area_spain')} for flats in Spain as a whole, and every one has a direct train to Madrid. You get a real town with a station, shops and health services, not an empty village.",
   body=f"""<div class="box"><p><b>Quick answer:</b> Bembibre, Puertollano, Linares, Arévalo, Ponferrada, Astorga and Medina del Campo. The fastest link is Medina del Campo, {F('train_medina')}. The lowest prices are in Bembibre and Puertollano. Want the full cost of buying in one of them? <a href="/buyers-guide/purchase-cost-calculator.html">Try our purchase cost calculator</a>, which shows it in your own currency.</p></div>
 <h2>The seven towns at a glance</h2>
 {town_rows()}
