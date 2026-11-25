@@ -63,7 +63,7 @@ def cta(who="", place=""):
             f'<div class="btns"><a class="btn" href="https://wa.me/34641188959?text=Hi%2C%20I%27m%20{who_txt}interested%20in%20homes%20in%20Spain" target="_blank" rel="noopener">WhatsApp us</a>'
             '<a class="btn ghost" href="/properties/">See properties</a></div></div>')
 
-from article_images import ART_IMG
+from article_images import ART_IMG, PHOTO_IMG
 
 def gcard(p):
     if p.get("slug") in ART_IMG:
@@ -81,7 +81,7 @@ def article(p, related, section, section_url, who):
     cover = ""
     if p.get("slug") in ART_IMG:
         cover = (f'<figure class="cover"><img src="/img/articles/{p["slug"]}.jpg" alt="{e(ART_IMG[p["slug"]])}" fetchpriority="high">'
-                 f'<figcaption>{e(ART_IMG[p["slug"]])}. AI-generated illustration.</figcaption></figure>')
+                 f'<figcaption>{e(ART_IMG[p["slug"]])}.{"" if p["slug"] in PHOTO_IMG else " AI-generated illustration."}</figcaption></figure>')
     elif p.get("img"):
         cover = (f'<figure class="cover"><img src="/img/villablino-{p["img"]}.jpg" alt="{e(IMG_ALT[p["img"]])}" fetchpriority="high">'
                  f'<figcaption>{e(IMG_ALT[p["img"]])}.</figcaption></figure>')

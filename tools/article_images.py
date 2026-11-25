@@ -36,3 +36,9 @@ ART_IMG = {
  "visas-to-live-in-spain": "Passports from several countries next to a map of Spain",
  "buying-from-abroad": "A couple signing documents at home while viewing a Spanish property online",
 }
+
+# Real photos (not AI): shown with a plain caption instead of the illustration label.
+PHOTO_IMG = {
+    "jesus-calleja-favourite-mountain-pena-ubina": "Peña Ubiña with a dusting of snow above green mountain pastures",
+}
+ART_IMG.update(PHOTO_IMG)
